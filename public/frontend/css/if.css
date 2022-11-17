@@ -1,0 +1,151 @@
+/* edit profile */
+.banr .chosen-container, .banr .chosen-container-single, .banr .chosen-with-drop, .banr .chosen-container-active {
+    background-color: #ddd;
+    width: 100%;
+    height: 67%;
+    padding-top: 6px;
+    padding-left: 12px;
+    border: 1px solid rgba(163, 159, 159, 0.568);
+}
+
+.box-cart{
+    width: 400px;
+}
+
+.nav-tabs .row{
+    --bs-gutter-x: 0 !important; 
+}
+
+.profile-tab button{
+    text-decoration: none;
+    color: black;
+}
+.profile-tab button:hover{
+    color: black;
+}
+
+.side-dd a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+.side-dd a:hover, .dropdown-btn:hover {
+    color: #ff4400;
+}
+
+/* .side-dd .active {
+    background-color: aqua;
+    color: white;
+} */
+
+.side-dd .dropdown-container {
+    display: none;
+    background-color: #ffffff;
+    padding-left: 8px;
+}
+
+.side-dd .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+#popUpAlamat .pop-Bbox{
+    text-align: start;
+    min-height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+}
+
+#popUpAlamat .judul-alamat{
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#popUpAlamat input[placeholder]{
+    font-size: 14px;
+}
+
+#popUpAlamat .form-check-input:checked {
+    background-color: #ff4200;
+}
+
+#biodata-diri a{
+    text-decoration: none;
+    color: #ff4200;
+}
+
+.notif-text p{
+    font-size: 16px;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
+
+#notifikasi .form-check-input{
+    width: 2em;
+    height: 2em;
+}
+
+#notifikasi .form-check-input:checked{
+    background-color: #ff4200;
+    border-color: #ff4200;
+}
+
+.pembayaran p{
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 0 !important;
+}
+
+#biodata-diri .btn-icon{
+    position: absolute;
+    left: 20px;
+    top: 9px;
+}
+
+.pikistaw:hover .pikistel{
+    border-bottom: 2px solid #ff4400;
+}
+
+.halaman-brand .img-brand {
+    transition: all .2s ease-in-out;
+}
+
+.halaman-brand .img-brand:hover {
+    transform: scale(1.1, 1.1);
+     
+}
+.wis-btn{
+    background-color: #ff4200;
+    color: white;
+}
+
+
+#quantity {
+    text-align: center;
+    padding: 5px;
+    margin: 2%;
+    width: 115px;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
+
+#sidebar-aksi{
+    width: 340px;
+    position: fixed;
+    top: 150px;
+}

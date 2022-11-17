@@ -1,0 +1,33 @@
+/* checkout */
+.alamat-pengiriman {
+    border-bottom: 5px solid rgb(240, 240, 240);
+}
+
+.checkout-img-product {
+    width: 64px;
+    height: 64px;
+}
+
+.checkout-img-toko {
+    width: 32px;
+    height: 32px;
+}
+
+.ganti-rugi div h6, .ganti-rugi div p {
+    margin: 0;
+}
+
+#checkoutFixed {
+    min-width: 400px;
+}
+
+input[type="checkbox"] {
+    zoom: 2;
+    accent-color: #ff4200;
+}
+
+.wis-btn {
+    
+}
+
+/* end checkout */
