@@ -135,10 +135,11 @@ class View extends Component
 
     public function render()
     {
-
+        $cart =  Cart::where('user_id', Auth::user()->id)->get();
         return view('livewire.frontend.checkout.view', [
             'totalCartAmount' =>  $this->totalCartAmount,
-            'snapToken' => $this->midtransRequest()
+            'snapToken' => $this->midtransRequest(),
+            'carts' => $cart
         ]);
     }
 }

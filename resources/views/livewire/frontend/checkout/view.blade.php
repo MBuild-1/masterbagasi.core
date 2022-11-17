@@ -78,7 +78,7 @@
             <div class="alamat-pengiriman mt-3 py-3">
                 <h5 class="fw-bold">Alamat Pengiriman</h5>
                 <hr>
-                <h5 class="fw-bold">dzulqurnain <span class="fw-normal"> (office address) </span> <span class="fw-normal badge bg-success">Utama</span></h5>
+                <h5 class="fw-bold">Iip Ganteng <span class="fw-normal"> (Official Address) </span> <span class="fw-normal badge bg-success">Utama</span></h5>
                 <h6>081513191399</h6>
                 <h6 class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, cumque nulla vel explicabo itaque ipsam eaque animi, at quod saepe hic, corporis assumenda maxime dolore natus eum deleniti odio exercitationem!</h6>
                 <hr>
@@ -95,12 +95,13 @@
                     </div>
                     <h6 class="text-muted mt-3">Kota Surabaya</h6>
                 </div>
+                @foreach ($carts as $cart)
                 <div class="checkout-item mt-5">
                     <div class="d-flex gap-3">
-                        <img src="{{ asset('image/uploads/products/2022111208283.jpg') }}" alt="tes" class="checkout-img-product">
+                        <img src="{{ asset('image/uploads/products/'.$cart->product->_ProductImages->image) }}" alt="tes" class="checkout-img-product">
                         <div>
-                            <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-                            <h6>1 barang (110 gr)</h6>
+                            <h5>{{$cart->product->name}}</h5>
+                            <h6>{{$cart->quantity}} barang ({{$cart->product->weight}}) Kg</h6>
                             <h5 class="fw-bold">Rp 27.500</h5>
                         </div>
                     </div>
@@ -116,48 +117,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="checkout-item mt-5">
-                    <div class="d-flex gap-3">
-                        <img src="{{ asset('image/uploads/products/2022111208283.jpg') }}" alt="tes" class="checkout-img-product">
-                        <div>
-                            <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-                            <h6>1 barang (110 gr)</h6>
-                            <h5 class="fw-bold">Rp 27.500</h5>
-                        </div>
-                    </div>
-                    <div class="ganti-rugi d-flex align-items-center gap-3 mt-3">
-                        <input type="checkbox" name="check-ganti">
-                        <div>
-                            <h6>Rusak total selama dipakai? Bisa ganti rugi!</h6>
-                            <p class="text-muted">Proses claim mudah dan instan, berlaku 3 bulan</p>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold">Rp 27.500</h6>
-                            <p class="text-muted">per barang</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="checkout-item mt-5">
-                    <div class="d-flex gap-3">
-                        <img src="{{ asset('image/uploads/products/2022111208283.jpg') }}" alt="tes" class="checkout-img-product">
-                        <div>
-                            <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-                            <h6>1 barang (110 gr)</h6>
-                            <h5 class="fw-bold">Rp 27.500</h5>
-                        </div>
-                    </div>
-                    <div class="ganti-rugi d-flex align-items-center gap-3 mt-3">
-                        <input type="checkbox" name="check-ganti">
-                        <div>
-                            <h6>Rusak total selama dipakai? Bisa ganti rugi!</h6>
-                            <p class="text-muted">Proses claim mudah dan instan, berlaku 3 bulan</p>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold">Rp 27.500</h6>
-                            <p class="text-muted">per barang</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 
@@ -173,14 +133,15 @@
                 <div class="shadow bg-body rounded p-3 mt-2">
                     <h6 class="fw-bold">Ringkasan belanja</h6>
                     <div class="d-flex justify-content-between mt-3">
-                        <h6>Total harga (3 Produk)</h6>
-                        <h6>Rp 104.800</h6>
+                        <h6>Total harga ({{$carts->count()}} Produk)</h6>
+                        <h6>Rp.{{ number_format($this->totalCartAmount,2,',','.') }}</h6>
                     </div>
                     <hr>
                     <h6 class="fw-bold">Total tagihan</h6>
-                    <div class=" w-100 btn btn-outline-secondary text-center mt-3">
+                    <div wire:ignore class=" w-100 btn btn-outline-secondary text-center mt-3" id="pay-button">
                         Pilih Pembayaran
                     </div>
+ 
                 </div>
             </div>
         </div>

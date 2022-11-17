@@ -19,7 +19,7 @@
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     {{-- <link rel="stylesheet" href="{{asset('frontend/css/mdb.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('frontend/css/login.css')}}">
-    @vite([])
+
     <title>Login MB</title>
 
 </head>
