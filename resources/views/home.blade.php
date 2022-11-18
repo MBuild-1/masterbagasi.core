@@ -290,8 +290,9 @@
 @section('content')
 
 <div class="container mt-5">
-  @include('home.banner')
+  {{-- @include('home.banner') --}}
   {{-- category --}}
+
   <section class="cat-wrap mt-4">
     <div class="bg-cat">
       <p class="px-4" style="font-family: Inter; font-size:28px; font-weight:100px; letter-spacing: -1px; position:relative; top:20px"><span style="font-family: Gantari; font-size: 47px; font-weight:500; letter-spacing: -1px">Semakin Mudah.</span>  Apapun yang kamu kangenin dari Indonesia, ada disini.</p>
