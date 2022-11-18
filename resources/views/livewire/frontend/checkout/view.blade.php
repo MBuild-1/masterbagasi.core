@@ -83,8 +83,8 @@
                 <h6 class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, cumque nulla vel explicabo itaque ipsam eaque animi, at quod saepe hic, corporis assumenda maxime dolore natus eum deleniti odio exercitationem!</h6>
                 <hr>
                 <div class="action-alamat d-flex gap-4">
-                    <div class="btn btn-outline-secondary">Pilih Alamat Lain</div>
-                    <div class="btn btn-outline-secondary">Kirim Ke Beberapa Alamat</div>
+                    <div class="btn btn-checkout-alamat">Pilih Alamat Lain</div>
+                    <div class="btn btn-checkout-alamat">Kirim Ke Beberapa Alamat</div>
                 </div>
             </div>
             <div class="checkout-items d-flex flex-column gap-1 py-5">
@@ -138,7 +138,7 @@
                     </div>
                     <hr>
                     <h6 class="fw-bold">Total tagihan</h6>
-                    <div wire:ignore class=" w-100 btn btn-outline-secondary text-center mt-3" id="pay-button">
+                    <div wire:ignore class=" w-100 btn btn-checkout-pembayaran text-center mt-3" id="pay-button">
                         Pilih Pembayaran
                     </div>
  

@@ -26,8 +26,25 @@ input[type="checkbox"] {
     accent-color: #ff4200;
 }
 
-.wis-btn {
-    
+.btn-checkout-alamat {
+    border: 1px solid #ff4200;
+    color: black;
+}
+
+.btn-checkout-alamat:hover {
+    color: white;
+    background-color: #ff4200;
+}
+
+.btn-checkout-pembayaran {
+    color: white;
+    background-color: #ff4200;
+    font-size: 20px;
+}
+
+.btn-checkout-pembayaran:hover {
+    color: white;
+    background-color: #ff4400e0;
 }
 
 /* end checkout */

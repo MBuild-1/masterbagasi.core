@@ -28,6 +28,7 @@ class View extends Component
             $wishlist = new Wishlists();
             $wishlist->user_id = $cart->user_id;
             $wishlist->product_id = $cart->product_id;
+            $this->emit('cartUpdated');
             $wishlist->save();
             $cart->delete();
             $this->dispatchBrowserEvent('message', [
@@ -49,9 +50,7 @@ class View extends Component
     {
         $this->cart = Cart::where('id', $id)->where('user_id', Auth::user()->id)->first();
         if ($this->cart) {
-            if ($this->cart->quantity < $this->cart->product->quantity) {
-                $this->cart->increment('quantity');
-            }
+            $this->cart->increment('quantity');
         }
     }
     public function decrementQuantity($id)

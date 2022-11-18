@@ -51,6 +51,7 @@ class UserSettings extends Component
     {
         $this->validate([
             'birthday' => 'nullable|date',
+            'place_birth' => 'nullable|string',
         ]);
 
         $user = User::find(Auth::user()->id);

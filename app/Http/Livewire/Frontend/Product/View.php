@@ -119,7 +119,7 @@ class View extends Component
                 $this->wishlistIsset = Wishlists::where('product_id', $product_id)->where('user_id', Auth::user()->id)->exists();
                 $this->dispatchBrowserEvent('message', [
                     'text' => 'Wishlist berhasil ditambah, ',
-                    'type' => 'success',
+                    'type' => 'mb',
                     'status' => 200
                 ]);
             }

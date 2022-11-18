@@ -24,17 +24,16 @@ class View extends Component
     {
         $wishlist = Wishlists::where('user_id', Auth::user()->id)->where('id', $id)->first();
         if (Cart::where('user_id', Auth::user()->id)->where('product_id', $wishlist->product->id)->first()) {
-            $this->dispatchBrowserEvent('message', [
-                'text' => 'Product already added to cart',
-                'type' => 'warning',
-                'status' => 300
-            ]);
+            $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $wishlist->product->id)->first();
+            $cart->quantity++;
+            $cart->save();
         } else {
             $cart = new Cart();
             $cart->user_id = $wishlist->user_id;
             $cart->product_id = $wishlist->product_id;
             $cart->quantity = 1;
             $cart->save();
+            $this->emit('cartUpdated');
         }
         $wishlist->delete();
     }

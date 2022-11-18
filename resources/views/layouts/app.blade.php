@@ -89,9 +89,10 @@
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 
     {{-- main.js --}}
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/if.js') }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="{{ asset('frontend/js/hebron.js') }}"></script>
     {{-- custom js --}}
     <script src="{{ asset('frontend/js/chosen.jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.flexslider.js') }}"></script>
@@ -105,7 +106,7 @@
             if(e.detail){
                 alertify.set('notifier', 'position', 'top-center');
                 alertify.notify(e.detail.text, e.detail.type);
-            }
+            }   
         });
     </script>
         <script type="text/javascript">

@@ -1137,9 +1137,11 @@ background: #eee;
 .display-flex {
 	display: flex;
 }
-.align-center {
+.align-center { 
 	align-items: center;
 }
+.ajs-message.ajs-mb { color: #31708f;  background-color: #ff4200;  border-color: #31708f; }
+
 .round-black-btn {
 	border-radius: 25px;
     background: #FF4200;
