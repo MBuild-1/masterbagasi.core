@@ -290,7 +290,7 @@
 @section('content')
 
 <div class="container mt-5">
-  {{-- @include('home.banner') --}}
+  @include('home.banner')
   {{-- category --}}
 
   <section class="cat-wrap mt-4">
