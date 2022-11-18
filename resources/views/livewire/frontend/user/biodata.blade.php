@@ -49,10 +49,10 @@
                         </div>
                         <div class="modal-body">
                             <form wire:submit.prevent='updateName'>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" wire:model="name">
-                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" wire:model="name" class="form-control" id="nama" placeholder="Nama kamu">
+                                    <label for="nama" >Nama</label>
+                                  </div>
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="row">
                 <div class="col-3 ">
-                    <p class="fw-bold text-sm" style="font-size: 16px;">Tanggal Lahir</p>
+                    <p class="fw-bold text-sm" style="font-size: 16px;">Tanggal Lahir </p>
                 </div>
                 <div class="col">
                     <p class="text-sm " style="font-size: 16px;">
@@ -80,10 +80,14 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form wire:submit.prevent='updateEmail'>
+                                <form wire:submit.prevent='updateBirthday'>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="tanggal_lahir" placeholder="Contoh : Depok" wire:model="place_birth">
+                                        <label for="tanggal_lahir">Tempat Tanggal Lahir</label>
+                                      </div>
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" wire:model="email">
+                                        <label for="tanggallahir" class="form-label">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" wire:model="birthday" >
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary">Save changes</button>

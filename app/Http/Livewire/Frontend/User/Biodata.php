@@ -9,10 +9,11 @@ use Livewire\Component;
 
 class Biodata extends Component
 {
-    public $name;
+    public $name, $birthday, $place_birth;
 
     protected $listeners = [
         'nameUpdated' => 'render',
+        'birthdayUpdated' => 'render',
     ];
     public function updateName()
     {
@@ -31,6 +32,32 @@ class Biodata extends Component
     public function resetInputName()
     {
         $this->name = '';
+    }
+
+    public function updateBirthday()
+    {
+        $this->validate([
+            'birthday' => 'nullable|date',
+            'place_birth' => 'nullable|string',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        if ($this->place_birth) {
+            $user->place_birth = $this->place_birth;
+        }
+        if ($this->birthday) {
+            $user->birthday = $this->birthday;
+        }
+        $user->save();
+        $this->emit('birthdayUpdated');
+        $this->resetInputBirthday();
+        session()->flash('sucess', 'Name successfully updated');
+        $this->dispatchBrowserEvent('close-model');
+    }
+    public function resetInputBirthday()
+    {
+        $this->birthday = '';
+        $this->place_birth = '';
     }
     public function render()
     {
