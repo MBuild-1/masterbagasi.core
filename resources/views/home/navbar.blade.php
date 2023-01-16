@@ -18,7 +18,7 @@
             </div>
              <livewire:frontend.cargo.deliverto>
             {{-- Search --}}
-            <form class="d-flex my-0 ms-2" style="width: 70%;" action="{{ url('/search') }}"
+            <form class="d-flex my-0 ms-2" style="width: 65%;" action="{{ url('/search') }}"
                 method="GET">
                 <input class="form-control me-2" type="search" placeholder="Cari barang disini" aria-label="Search"
                     value="{{ Request::get('search') }}" name="search" autocomplete="off">
@@ -28,7 +28,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <div class="inbox-icon ic-size"></div>
+                        <div class="inbox-icon ic-size responsive"></div>
                     </a>
                     @if (Auth::check())
                         
@@ -79,17 +79,19 @@
                             </a>
                         </li>
                         <li class="chat_li">
-                            <div class="dropdown-item d-flex p-0" href="#">
-                                <div class="bantuan_icon"></div>
-                                <div class="chat_data">
-                                    <div class="chat_title">
-                                        Pesan Bantuan
-                                    </div>
-                                    <div class="chat_subtit">
-                                        Pantau status bantuan dari Master bagasi
+                            <a href="#">
+                                <div class="d-flex p-0" href="#">
+                                    <div class="bantuan_icon"></div>
+                                    <div class="chat_data">
+                                        <div class="chat_title">
+                                            Pesan Bantuan
+                                        </div>
+                                        <div class="chat_subtit">
+                                            Pantau status bantuan dari Master bagasi
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
 
                     </ul>
@@ -211,8 +213,10 @@
                 @else
                 <a href="">
                 <ul class="nav nav-tabs" >
-                        <a href="{{ route('profile-edit') }}">
-                            <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid" width="40px">
+                            <li class="nav-item ms-2">
+                                <a href="{{ route('profile-edit') }}">
+                                <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid" width="40px">
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle px" style="color: black;" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">

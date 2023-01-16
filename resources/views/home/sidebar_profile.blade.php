@@ -5,7 +5,7 @@
                 <img src="{{asset('frontend/img/dummy/profil.svg')}}" alt="Avatar" class="avatar rounded-circle pl-5">
             </div>
             <div>
-                <p class="mb-0 mt-2 fw-bold">Subhan</p>
+                <p class="mb-0 mt-2 fw-bold">Test</p>
                 <p class="mb-1">Member Gold</p>
             </div>
         </div>

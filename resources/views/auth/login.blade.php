@@ -17,8 +17,8 @@
                     <img src=" {{ asset('frontend/img/maskot/splash-masta1.png') }}" alt="" class="position-absolute splash-masta" style="width: 90px; top: 24%; left: 58%">
 
                     <div class="px-3" style="margin-top: 20%">
-                        <h1 class="fw-bold text-center">Selamat Datang di Master Bagasi</h1>
-                        <h3 class=" text-center">E-Commerce pertama di Indonesia yang telah menjangkau lebih dari 70 Negara di Dunia</h2>
+                        <h1 class="fw-bold text-center text-dark">Selamat Datang di Master Bagasi</h1>
+                        <h3 class="text-center text-muted">E-Commerce pertama di Indonesia yang telah menjangkau lebih dari 70 Negara di Dunia</h2>
                     </div>
                     
                 </div>
@@ -27,13 +27,13 @@
             <div class="col-md-6 col-sm-12">
                 <div class="pt-1">
                     <div class="border border-2 w-100 mx-auto py-4 px-5 shadow">
-                        <h4 class="fw-bold text-center">Masuk ke Masterbagasi</h4>
-                        <h5 class="text-center mb-3">Belum punya akun Masterbagasi? <a href="/register" class="text-decoration-none" style="color: #FF4200"> Ayo Daftar</a></h5>
+                        <h4 class="fw-bold text-center text-dark">Masuk ke Masterbagasi</h4>
+                        <h5 class="text-center mb-3 text-muted">Belum punya akun Masterbagasi? <a href="/register" class="text-decoration-none" style="color: #FF4200"> Ayo Daftar</a></h5>
                         <a class="button_slide slide_right fw-bold btn text-white w-100" type="submit" style="background-color: #ee2a23;" type="submit"><i class="fab fa-google me-2"></i>Lanjutkan dengan Google</a>
                         <a class="button_slide slide_right btn fw-bold text-white w-100" type="submit" style="background-color: #216ab9;" type="submit"><i class="fab fa-facebook-f me-2"></i>Lanjutkan dengan Facebook</a>
                         <div class="d-flex justify-content-between mt-3">
-                            <svg class="dash" viewBox="-10 0 50 1"><line x1="-9" x2="39"></line></svg>
-                            <h5 class="text-center">Master Bagasi</h5>
+                            <svg class="dash" viewBox="-10 0 50 1"><line class="secondary" x1="-9" x2="39"></line></svg>
+                            <h5 class="text-center text-dark">Master Bagasi</h5>
                             <svg class="dash" viewBox="-10 0 50 1"><line x1="-9" x2="39"></line></svg>
                         </div>
 
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <h5 class="text-center mt-5">Ⓒmasterbagasi 2021-2023, PT. Bumi Hijau Khatulistiwa    |   <a href="#" class="text-decoration-none" style="color: #FF4200">Masterbagasi Afiliasi</a></h5>
+        <h6 class="text-center text-dark mt-5">Ⓒmasterbagasi 2021-2023, PT. Bumi Hijau Khatulistiwa    |   <a href="#" class="text-decoration-none" style="color: #FF4200">Masterbagasi Afiliasi</a></h6>
     </div>
 </section>
 

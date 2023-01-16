@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script type="text/javascript"
-    src="https://app.sandbox.midtrans.com/snap/snap.js"
+    src="https://app.sandbox..com/snap/snap.js"
     data-client-key="SB-Mid-client-lL_4Lk3YRATrkR5F"></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
