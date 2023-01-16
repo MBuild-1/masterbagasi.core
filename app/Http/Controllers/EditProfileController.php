@@ -19,6 +19,34 @@ class EditProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function merekFavorit()
+    {
+        return view('home.merek_fav');
+    }
+    public function menungguPembayaran()
+    {
+        return view('home.menunggu_pembayaran');
+    }
+    public function daftarTransaksi()
+    {
+        return view('home.daftar_transaksi');
+    }
+    public function updateNotif()
+    {
+        return view('home.update_notif');
+    }
+    public function ulasan()
+    {
+        return view('home.ulasan');
+    }
+    public function diskusiProduk()
+    {
+        return view('home.diskusi_produk');
+    }
+    public function chatProfile()
+    {
+        return view('home.chat_profile');
+    }
     public function index()
     {
         return view('home.profile');

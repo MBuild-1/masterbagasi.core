@@ -24,7 +24,7 @@
     <div class="card-header">
         <div class="d-flex flex-row justify-content-between">
             <p>ADD Map</p>
-            <a class="btn btn-primary" href="{{url('admin/map')}}">Back</a>
+            <a class="btn btn-lihat-sm" href="{{url('admin/map')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -38,24 +38,12 @@
               <label for="vector" class="form-label">Vector</label>
               <textarea class="form-control" id="vector" rows="3" name="vector"></textarea>
             </div>
-            <div class="col-md-6 input-group">
+            <div class="col-md input-group">
               <input type="file" class="form-control" id="image" name="image">
               <label class="input-group-text" for="image">Upload</label>
             </div>
-            <div class="col-md-12">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="description" rows="3" name="description"></textarea>
-            </div>
-            <div class="col-md-12">
-              <label for="kebudayaan" class="form-label">Kebudayaan</label>
-              <textarea class="form-control" id="kebudayaan" rows="3" name="kebudayaan"></textarea>
-            </div>
-            <div class="col-md-12">
-              <label for="makanan" class="form-label">Makanan</label>
-              <textarea class="form-control" id="makanan" rows="3" name="makanan"></textarea>
-            </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-lihat-sm">Add</button>
             </div>
           </form>
     </div>

@@ -1,6 +1,3 @@
-// $('.mycart-icon').on('mouseover', function() {
-//     $(this).attr('src', 'frontend/img/ico/cart/cart-on.svg');
-//   });
 $(".inbox-icon, .notif-icon, .mycart-icon").hover(
     function () {
         const temp = $(this).find("img").attr("src").replace("-off", "-on");
@@ -13,21 +10,17 @@ $(".inbox-icon, .notif-icon, .mycart-icon").hover(
 );
 
 
-function popUpBanner(e){
-    alert('belom ada')
-}
-
-
 $('#testi').owlCarousel({
     autoplay: true,
     autoplayTimeout: 3000,
-    autoplayHoverPause: false,
+    autoplayHoverPause: true,
     items: 2,
-    stagePadding: 145,
+    stagePadding: 150,
     center: true,
     nav: false,
     dots: false,
     loop: true,
+    smartSpeed:1500,
 });
 
 
@@ -37,12 +30,15 @@ $(document).ready(function(){
     var owl = $('#bundle').owlCarousel({
         loop:true,
         margin:10,
+        animateOut:'bounceOutRight',
+        animateIn:'bounceInRight',
         nav:true,
+        mouseDrag: false,
         dots:false,
-        items:2,
-        navText:["<div class='nav-btn prev-slide'><i class='fa fa-angle-left'></i></div>","<div class='nav-btn next-slide'><i class='fa fa-angle-right'></i></div>"],
-        rtl:true,
-        smartSpeed:1200,
+        items:1,
+        navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+        rtl:false,
+        smartSpeed:1500,
     });
     
     owl.on('initialized.owl.carousel', function(event) {
@@ -127,32 +123,36 @@ $('#BannerPanjang').owlCarousel({
     dots: false,
     loop: true,
     autoplay: true,
-    autoplayTimeout:3000,
+    autoplayTimeout:4000,
 
     items : 1, 
     itemsDesktop : false,
     itemsDesktopSmall : false,
     itemsTablet: false,
-    itemsMobile : false
+    itemsMobile : false,
+    smartSpeed:1500
 });
 
 // owl carousel product
 $('#carou-cat').owlCarousel({
     center: false,
     loop:true,
-    stagePadding: 50,
+    stagePadding: 60,
     nav:true,
     dots: false,
-    navText:["<div class='nav-btn prev-slide'><i class='fa fa-angle-left'></i></div>","<div class='nav-btn next-slide'><i class='fa fa-angle-right'></i></div>"],
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+    responsiveClass: true,
     responsive:{
-        0:{
-            items:1
+        0: {
+            items: 2,
+            stagePadding: 15
         },
-        600:{
-            items:3
+        768: {
+            items: 4,
+            stagePadding: 30,
         },
-        1000:{
-            items:5
+        992: {
+            items: 5
         }
     }
 });
@@ -164,57 +164,199 @@ $('#carou-cat2').owlCarousel({
     margin:20,
     nav:true,
     dots: false,
-    navText:["<div class='nav-btn prev-slide'><i class='fa fa-angle-left'></i></div>","<div class='nav-btn next-slide'><i class='fa fa-angle-right'></i></div>"],
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
     responsive:{
-        0:{
-            items:1
+        0: {
+            items: 2,
+            stagePadding: 10,
+            margin: 10
         },
-        600:{
-            items:3
+        768: {
+            items: 4,
+            stagePadding: 50,
         },
-        1000:{
-            items:5
+        1160: {
+            items:6
+        },
+        1360:{
+            items:7
+        }
+    }
+});
+
+$('#carousel-cart-wishlist').owlCarousel({
+    center: false,
+    stagePadding: 60,
+    nav:true,
+    dots: false,
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+    responsiveClass: true,
+    responsive:{
+        0: {
+            items: 2,
+            stagePadding: 15
+        },
+        768: {
+            items: 4,
+            stagePadding: 30,
+        },
+        992: {
+            items: 6
+        }
+    }
+});
+
+$('#carousel-cart-rekomendasi').owlCarousel({
+    center: false,
+    stagePadding: 60,
+    nav:true,
+    dots: false,
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+    responsiveClass: true,
+    responsive:{
+        0: {
+            items: 2,
+            stagePadding: 15
+        },
+        768: {
+            items: 4,
+            stagePadding: 30,
+        },
+        992: {
+            items: 6
+        }
+    }
+});
+
+$('#carousel-brand-terbaru').owlCarousel({
+    center: false,
+    stagePadding: 60,
+    nav:true,
+    dots: false,
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+    responsiveClass: true,
+    responsive:{
+        0: {
+            items: 2,
+            stagePadding: 15
+        },
+        768: {
+            items: 4,
+            stagePadding: 30,
+        },
+        992: {
+            items: 6
+        }
+    }
+});
+$('#carousel-brand-terlaris').owlCarousel({
+    center: false,
+    stagePadding: 60,
+    nav:true,
+    dots: false,
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+    responsiveClass: true,
+    responsive:{
+        0: {
+            items: 2,
+            stagePadding: 15
+        },
+        768: {
+            items: 4,
+            stagePadding: 30,
+        },
+        992: {
+            items: 6
         }
     }
 });
 
 $('.hashtag').owlCarousel({
-    stagePadding:20,
+    stagePadding:80,
     nav:true,
     dots:false,
-    navText:["<div class='nav-btn prev-slide'><i class='fa fa-angle-left'></i></div>","<div class='nav-btn next-slide'><i class='fa fa-angle-right'></i></div>"],
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
     responsive:{
-        0:{
-            items:1
+        0: {
+            items: 2,
+            stagePadding: 15
         },
-        600:{
-            items:3
+        768: {
+            items: 4,
+            stagePadding: 30,
         },
-        1000:{
-            items:5
+        992: {
+            items: 5
         }
+        // 0:{
+        //     items:2,
+        //     stagePadding: 20
+        // },
+        // 768: {
+        //     items: 4,
+        //     stagePadding: 50,
+        // },
+        // 1160: {
+        //     items:4
+        // },
+        // 1360:{
+        //     items:5
+        // }
     }
 });
 
 
 // js Carocaro
 $('#carocaro').owlCarousel({
-    stagePadding: 20,
+    stagePadding: 90,
+    margin: 10,
     center:false,
     nav:true,
     dots: false,
-    navText:["<div class='nav-btn prev-slide'><i class='fa fa-angle-left'></i></div>","<div class='nav-btn next-slide'><i class='fa fa-angle-right'></i></div>"],
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
     responsive:{
-        0:{
-            items:1
+        0: {
+            items: 1,
+            stagePadding: 15
         },
-        600:{
-            items:4
+        768: {
+            items: 2,
+            stagePadding: 30,
         },
-        1000:{
-            items:3
+        992: {
+            items: 3
         }
+        // 0:{
+        //     items:1
+        // },
+        // 600:{
+        //     items:3
+        // },
+        // 1000:{
+        //     items:3
+        // }
     }
+});
+
+$('#carocaro').on('changed.owl.carousel', function(e) {
+    if ( e.item.index != 0 ){
+        $('.reels .section-title').css({"animation": "reelsAnimation 2s forwards"});
+        $('.reels .section-title h2').css({"animation": "reelsAnimation 2s forwards"});
+        $('#carocaro').css({"left": "1%", "width": "98%"});
+    } else {
+        $('.reels .section-title').css({"animation": "reelsAnimationOut 2s forwards"});
+        $('.reels .section-title h2').css({"animation": "reelsAnimationOut 2s forwards"});
+        $('.reels .section-title, .reels .section-title h2').css('display', 'block');
+        $('#carocaro').css({"width": "78%", "position": "absolute", "left": "22%"});
+    }
+});
+
+// js Caro-news
+$('#caro-news').owlCarousel({
+    nav: true,
+    dots: false,
+    navText:["<span class='carousel-control-prev-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>","<span class='carousel-control-next-icon' aria-hidden='true' style='width: 20px;height: 50px;background-size: cover;border-radius: 5px;'></span>"],
+    items:1,
 });
 
 
@@ -242,11 +384,13 @@ $('#deliver-hover').hover(function () {
         // over
         $("#deliver-hover p").css({"color": "#000"});
         $("#deliver-hover span").css({"color": "#FF4200"});
+        $("#deliver-hover a").css({"color": "#FF4200"});
 
     }, function () {
         // out
         $("#deliver-hover p").css({"color": "#898989"});
         $("#deliver-hover span").css({"color": "#898989"});
+        $("#deliver-hover a").css({"color": "#898989"});
     }
 );
 
@@ -283,3 +427,111 @@ const closePopUpBanjang = () => {
 }
 
 
+// card product
+const toggleCart = (e) => {
+    if (
+        e.src.match("frontend/img/ico/addcart/addcart-off.svg") ||
+        e.src.match("frontend/img/ico/addcart/addcart-hover.svg")
+    ) {
+        e.src = "frontend/img/ico/addcart/addcart-aktif.svg";
+    } else {
+        e.src = "frontend/img/ico/addcart/addcart-off.svg";
+    }
+};
+
+const hoverCart = (e) => {
+    if (!e.src.match("frontend/img/ico/addcart/addcart-aktif.svg")) {
+        e.src = "frontend/img/ico/addcart/addcart-hover.svg";
+    }
+};
+
+const outCart = (e) => {
+    if (!e.src.match("frontend/img/ico/addcart/addcart-aktif.svg")) {
+        e.src = "frontend/img/ico/addcart/addcart-off.svg";
+    }
+};
+
+const toggleWishlist = (e) => {
+    if (
+        e.src.match("frontend/img/ico/wishlist/wishlist-off.svg") ||
+        e.src.match("frontend/img/ico/wishlist/wishlist-hover.svg")
+    ) {
+        e.src = "frontend/img/ico/wishlist/wishlist-aktif.svg";
+    } else {
+        e.src = "frontend/img/ico/wishlist/wishlist-off.svg";
+    }
+};
+
+const hoverWishlist = (e) => {
+    if (!e.src.match("frontend/img/ico/wishlist/wishlist-aktif.svg")) {
+        e.src = "frontend/img/ico/wishlist/wishlist-hover1.svg";
+    }
+};
+
+const outWishlist = (e) => {
+    if (!e.src.match("frontend/img/ico/wishlist/wishlist-aktif.svg")) {
+        e.src = "frontend/img/ico/wishlist/wishlist-off1.svg";
+    }
+};
+
+//AutoDumpLimitCache
+const express = require("express");
+const bodyParser = require('body-parser');
+
+function setEntity(req, res) {
+   // something....
+}
+
+module.exports = (app) => {
+
+  const router = new express.Router();
+
+  app.use(bodyParser.json({limit:'50mb'}));
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+  router.use('/set/', (req, res) => {
+    setEntity(req, res);
+  });
+
+  return router;
+};
+
+//DomCompress
+window.onload = function () {
+    var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
+    console.log('Page load time is '+ loadTime);
+}
+
+//Load
+var minifyImg = function(dataUrl,newWidth,imageType="image/jpeg",resolve,imageArguments=0.7){
+    var image, oldWidth, oldHeight, newHeight, canvas, ctx, newDataUrl;
+    (new Promise(function(resolve){
+      image = new Image(); image.src = dataUrl;
+      log(image);
+      resolve('Done : ');
+    })).then((d)=>{
+      oldWidth = image.width; oldHeight = image.height;
+      log([oldWidth,oldHeight]);
+      newHeight = Math.floor(oldHeight / oldWidth * newWidth);
+      log(d+' '+newHeight);
+
+      canvas = document.createElement("canvas");
+      canvas.width = newWidth; canvas.height = newHeight;
+      log(canvas);
+      ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0, newWidth, newHeight);
+      //log(ctx);
+      newDataUrl = canvas.toDataURL(imageType, imageArguments);
+      resolve(newDataUrl);
+    });
+  };
+
+//compress
+const gzip = zlib.createGzip();
+const fs = require('fs');
+const inp = fs.createReadStream('input.txt');
+const out = fs.createWriteStream('input.txt.gz');
+
+inp.pipe(gzip).pipe(out);

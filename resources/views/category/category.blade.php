@@ -1,29 +1,49 @@
 @extends('layouts.app')
 @section('content')
-<div class="jumbotron" style="background-color: #FF4200; height: 400px;"></div>
-<div class="container" style="margin-top: -80px">
-    <div class="row">
-        <div class="col">
-            <h1 class="text-white">{{ $categories->name }}</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md d-flex justify-content-center">
-            <div class="card w-100">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="wrap-breadcrumb pb-2">
-                            <ul>
-                                <li class="item-link"><a href="{{ url('/') }}" class="link">Home</a>
-                                </li>
-                                <li class="item-link"><span>{{ $categories->name }}</span></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+    <div class="container mt-5">
+        <div class="row pt-4">
+            <div class="col-md-12" >
+                <div class="jumbotron" style="background-color: #ff4200">
+                    <div class="d-flex justify-content-start align-items-end h-100 ps-3 pb-4" style="min-height: 337px;">
+                        <h1 class="text-white">{{ $categories->name }}</h1>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="row my-3">
+            <div class="col-md d-flex justify-content-center">
+                <div class="card w-100">
+                    <ul class="list-group list-group-flush shadow">
+                        <li class="list-group-item">
+                            <div class="wrap-breadcrumb pb-2">
+                                <ul>
+                                    <li class="item-link"><a href="{{ url('/') }}" class="link" style="font-size: 16px">Home</a>
+                                    </li>
+                                    <li class="item-link"><span style="font-size: 16px">{{ $categories->name }}</span></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <livewire:frontend.category.view :products="$products" :categories="$categories"/>
     </div>
 </div>
-<livewire:frontend.category.view :products="$products" :categories="$categories"/>
+
+@endsection
+
+@section('script')
+<script>
+    $(document).on('contentChanged', function(e) {
+        $(function () {
+            $('.product-name').each(function () {
+                len = $(this).text().length;
+                if (len > 50) {
+                    $(this).text($(this).text().substring(0, 50) + "...");
+                }
+            });
+        });
+    })
+</script>
 @endsection

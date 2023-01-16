@@ -37,15 +37,6 @@
                     <p class="list-group-item">Brand</p>
                     <li class="list-group-item">
                         <div class="form-check d-flex flex-column">
-                            {{-- @foreach($categories->brand as $item)
-                                <div class="my-1">
-                                    <input class="form-check-input" wire:model="inputBrands" type="checkbox"
-                                        value="{{ $item->name }}" id="{{ $item->name }}" style="cursor: pointer">
-                                    <label class="form-check-label" for="{{ $item->name }}">
-                                        {{ $item->name }}
-                                    </label>
-                                </div>
-                            @endforeach --}}
                         </div>
                     </li>
                 </ul>
@@ -59,8 +50,13 @@
                     <a href="{{ url('category/'.$product->product->category->slug.'/'.$product->product->slug) }}"
                         style="text-decoration: none; color:black">
                         <div class="card card-product">
-                            <img src="{{ asset('image/uploads/products/'.$product->product->_ProductImages->image) }}"
-                                class="card-img-top card-img-product" alt="product" width="50px">
+                            @if($product->product->ProductImages->isEmpty())
+                                <img src="{{ asset('frontend/img/default_product.png') }}"
+                                    class="card-img-top card-img-product" alt="product" width="50px">
+                            @else
+                                <img src="{{ asset('image/uploads/products/'.$product->product->_ProductImages->image) }}"
+                                    class="card-img-top card-img-product" alt="product" width="50px">
+                            @endif
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div class="">
@@ -82,30 +78,52 @@
                                             <p class="rating-text text-muted sold">terjual 1260</p>
                                         </div>
                                     </div>
-                    <div class="d-flex flex-column align-items-center justify-content-between">
-                        <p class="weight-product">500g</p>
-                        <div class="d-flex flex-column product-card-icon">
-                            @if (isset($product->product->wishlist->product_id) == isset($product->product->id))
-                            <div>
-                                <img wire:click.prevent='addToWishlist({{ $product->product->id }})'
-                                    src="{{ asset('frontend/img/ico/wishlist/wishlist-aktif.svg') }}">
+                                    <div class="d-flex flex-column align-items-center justify-content-between">
+                                        <p class="weight-product">500g</p>
+                                        <div class="d-flex flex-column product-card-icon">
+                                            @php
+                                                if(Auth::check()){
+                                                $wishlistCheck = App\Models\Wishlists::where('product_id',
+                                                $product->id)->where('user_id', Auth::user()->id)->exists();
+                                                }
+                                            @endphp
+                                            <div class="col" style="height: 46px; width: 216px">
+                                                <div class="row">
+                                                    <div class="col-3 pe-0">
+                                                        @if(Auth::check())
+                                                            @if($wishlistCheck)
+                                                                <img wire:click.prevent='addToWishlist({{ $product->id }})'
+                                                                    src="{{ asset('frontend/img/ico/wishlist/cta/wishlist-aktif.svg') }}"
+                                                                    style="box-sizing: border-box;width: 50px;">
+                                                            @else
+                                                                <img class="keranjang-hov"
+                                                                    wire:click.prevent='addToWishlist({{ $product->id }})'
+                                                                    src="{{ asset('frontend/img/ico/wishlist/cta/wishlist-off.svg') }}"
+                                                                    style="box-sizing: border-box">
+                                                            @endif
+                                                        @else
+                                                            <img class="keranjang-hov"
+                                                                wire:click.prevent='addToWishlist({{ $product->id }})'
+                                                                src="{{ asset('frontend/img/ico/wishlist/cta/wishlist-off.svg') }}"
+                                                                style="box-sizing: border-box">
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-9 pe-3 d-flex my-auto">
+                                                        <button wire:click.prevent='addToCart({{ $product->id }})'
+                                                            class="btn btn-cart-produk">+
+                                                            Keranjang</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        @else
-                            <div>
-                                <img wire:click.prevent='addToWishlist({{ $product->product->id }})'
-                                    src="{{ asset('frontend/img/ico/wishlist/wishlist-off.svg') }}">
-                            </div>
-                @endif
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
-</div>
-</div>
-</a>
-
-@endforeach
-</div>
-</div>
-</div>
 </div>
 @endsection

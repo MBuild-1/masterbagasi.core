@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Frontend\Product;
 
+use App\Models\BuyNow;
 use App\Models\Cart;
 use Livewire\Component;
 use App\Models\Wishlists;
 use Illuminate\Support\Facades\Auth;
-
 
 class ViewProvince extends Component
 {
@@ -17,6 +17,19 @@ class ViewProvince extends Component
         return [
             'note' => 'nullable|string|max:144',
         ];
+    }
+    public function buyNow($product)
+    {
+        $product_buynow = BuyNow::where('user_id', Auth::user()->id)->first();
+        if ($product_buynow !== null)
+            $product_buynow->delete();
+        $buynow = new BuyNow;
+        $buynow->user_id = Auth::user()->id;
+        $buynow->product_id = $product;
+        $buynow->quantity = 1;
+        $this->emit('buynow');
+        $buynow->save();
+        return redirect()->to('/buynow');
     }
     public function addToCart($product_id)
     {
@@ -78,12 +91,7 @@ class ViewProvince extends Component
                 }
             }
         } else {
-            $this->dispatchBrowserEvent('message', [
-                'text' => 'Login is Login',
-                'type' => 'warning',
-                'status' => 401
-            ]);
-            return redirect('/login');
+            $this->dispatchBrowserEvent('popupLogin');
         }
     }
     public function incrementQuantity()
@@ -117,18 +125,9 @@ class ViewProvince extends Component
                 $wishlist->product_id = $product_id;
                 $wishlist->save();
                 $this->wishlistIsset = Wishlists::where('product_id', $product_id)->where('user_id', Auth::user()->id)->exists();
-                $this->dispatchBrowserEvent('message', [
-                    'text' => 'Wishlist berhasil ditambah, ',
-                    'type' => 'success',
-                    'status' => 200
-                ]);
             }
         } else {
-            $this->dispatchBrowserEvent('message', [
-                'text' => 'Login is required',
-                'type' => 'warning',
-                'status' => 401
-            ]);
+            $this->dispatchBrowserEvent('popupLogin');
         }
     }
 

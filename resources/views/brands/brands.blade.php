@@ -1,140 +1,195 @@
 @extends('layouts.app')
 @section('content')
-<div class="jumbotron" style="background-color: #FF4200; height: 700px; padding-top: 100px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 p-0">
-                <div style="width: 100%; height: 500px; background-color: #ddd;" class="d-flex flex-column gap-5 p-4">
-                    <img class="mx-auto img-brand" src="{{asset('frontend/img/product/Rempah1.jpg')}}" width="300px">
-                    <div class="tahukah d-flex gap-5">
-                        <h3 class="fw-bold">Tahukah Kamu?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptatum alias eligendi sint ipsam ullam maxime at iste accusantium, fuga nostrum eum, ducimus veniam asperiores? Voluptates vero exercitationem id omnis.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="p-4" style="width: 100%; height: 500px; background-color: #ddd">
-                    <div class="section-title">
-                        <h4>Video Brand</h4>
-                    </div>
-                    <div id="carouselYutup" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner width-80-percent mx-auto">
-                          <div class="carousel-item active">
-                            <div class="ratio ratio-16x9">
-                                <iframe class="img-edit" src="https://www.youtube.com/embed/21-1dn1CPTs?controls=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="container mt-5">
+        <div class="row pt-4">
+            <div class="col-md-12" >
+                <div class="jumbotron" style="height: 200px; background-image: url({{ asset('frontend/img/brand.jpg') }}); background-size: cover">
+                    <div class="d-flex justify-content-start align-items-center gap-3 h-100 px-5">
+                        <div style="width: 150px; height: 150px; background-color: #ff4200; border-radius: 50%"></div>
+                        <div class="d-flex flex-column">
+                            <div class="d-flex gap-1">
+                                <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ff4200"></div>
+                                <h3 class="text-white fw-bold">{{ $brands->name }}</h3>
                             </div>
-                          </div>
-                          <div class="carousel-item">
-                            <div class="ratio ratio-16x9">
-                                <iframe class="img-edit" src="https://www.youtube.com/embed/21-1dn1CPTs?controls=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-menu-keranjang px-5 py-0 fw-bold">Favorit</button>
+                                <button class="btn btn-menu-keranjang"><i class="fa-solid fa-store fa-sm"></i></button>
+                                <button class="btn btn-menu-keranjang"><i class="fa-solid fa-share-nodes fa-sm"></i></button>
                             </div>
-                          </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselYutup" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselYutup" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
-                    <p class="mt-3">Dibuat dari bahan-bahan pilihan untuk menghasilkan produk cemilan yang penuh nutrisi untuk mensuplai kebahagiaanmu</p>
-                    <p>Dibuat dari bahan-bahan pilihan untuk menghasilkan produk cemilan yang penuh nutrisi untuk mensuplai kebahagiaanmu</p>
                 </div>
             </div>
         </div>
+        <div class="row my-3">
+            <div class="col-md d-flex justify-content-center">
+                <div class="card w-100">
+                    <ul class="list-group list-group-flush shadow">
+                        <li class="list-group-item">
+                            <div class="wrap-breadcrumb pb-2">
+                                <ul>
+                                    <li class="item-link"><a href="{{ url('/') }}" class="link" style="font-size: 16px;">Home</a></li>
+                                    <li class="item-link"><span style="font-size: 16px;">{{ $brands->name }}</span></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+        {{-- Livewire --}}
+        <livewire:frontend.brand.view :products="$products" :brands="$brands"/>
 
-<div class="container min-height-510" style="margin-top:-80px;">
-    <div class="row">
-        <div class="col">
-            <h1 class="text-white">{{ $brands->name }}</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md d-flex justify-content-center">
-            <div class="card w-100">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="wrap-breadcrumb pb-2">
-                            <ul>
-                                <li class="item-link"><a href="{{ url('/') }}" class="link">Home</a>
-                                </li>
-                                <li class="item-link"><span>{{ $brands->name }}</span></li>
-                            </ul>
+        <div class="row justify-content-end my-3">
+            <div class="col">
+                <section class="viral-wrap2 mt-3 brand-wrap" style="height: auto">
+                    <div class="bg-cat">
+                        <div class="row">
+                            <div class="col-8 d-flex my-auto">
+                                <p class="px-4 mb-0 section-title">Produk Terbaru di Merek Ini</p>
+                            </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="container">
+                        <div class="bks-cat">
+                            <div id="carousel-brand-terbaru" class="owl-carousel owl-theme">
+                                @foreach ($latest as $product)
+                                <a href="{{url('brands/'.$product->brands->slug.'/'.$product->slug)}}" style="text-decoration: none; color:black;">
+                                    <div class="d-flex flex-wrap gap-4">
+                                    <div class="card card-product card-nih">
+                                        <img src="{{ asset('image/uploads/products/'.$product->_ProductImages->image) }}">
+                                        <div class="card-body">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col">
+                                                <p class="product-name fz-16">{{$product->name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row d-flex justify-content-center align-items-center py-1">
+                                                <div class="col-8 d-flex justify-content-start">
+                                                <p class="price fz-16" >Rp{{number_format($product->selling_price,0,',','.');}}</p>
+                                                </div>
+                                                <div class="col ps-0">
+                                                <div class="d-flex justify-content-end">
+                                                    <p>
+                                                    <strong style="font-size: 15px">{{$product->weight}}</strong>  
+                                                    <span style="font-size: 12px">Kg</span> 
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" >
+                                                <div class="col d-flex justify-content-start">
+                                                <div class="d-flex justify-content-center align-content-center">
+                                                    <i class="bi bi-star-fill text-warning me-1 fz-14"></i>
+                                                    <p class="rating-text fz-14">4.5 |</p>
+                                                </div>
+                                                    <div>
+                                                        <p class="rating-text sold ms-2 fz-14" style="margin-bottom: 1rem"> terjual {{$product->sold}}</p>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="row" >
+                                                <livewire:frontend.c-t-a.wish-cart :product="$product">
+    
+                                            </div>
+                                            </div>
+                                        </div>
+                                    
+                                        
+                                    </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row justify-content-end my-3 brand-wrap">
+            <div class="col">
+                <section class="viral-wrap2 mt-3" style="height: auto">
+                    <div class="bg-cat">
+                        <div class="row">
+                            <div class="col-8 d-flex my-auto">
+                                <p class="px-4 mb-0 section-title">Produk Terlaris di Merek Ini</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="bks-cat">
+                            <div id="carousel-brand-terlaris" class="owl-carousel owl-theme">
+                                @foreach ($best_seller as $product)
+                                <a href="{{url('brands/'.$product->brands->slug.'/'.$product->slug)}}" style="text-decoration: none; color:black;">
+                                    <div class="d-flex flex-wrap gap-4">
+                                    <div class="card card-product card-nih">
+                                        <img src="{{ asset('image/uploads/products/'.$product->_ProductImages->image) }}">
+                                        <div class="card-body">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col">
+                                                <p class="product-name fz-16">{{$product->name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row d-flex justify-content-center align-items-center py-1">
+                                                <div class="col-8 d-flex justify-content-start">
+                                                <p class="price fz-16" >Rp{{number_format($product->selling_price,0,',','.');}}</p>
+                                                </div>
+                                                <div class="col ps-0">
+                                                <div class="d-flex justify-content-end">
+                                                    <p>
+                                                    <strong style="font-size: 15px">{{$product->weight}}</strong>  
+                                                    <span style="font-size: 12px">Kg</span> 
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" >
+                                                <div class="col d-flex justify-content-start">
+                                                <div class="d-flex justify-content-center align-content-center">
+                                                    <i class="bi bi-star-fill text-warning me-1 fz-14"></i>
+                                                    <p class="rating-text fz-14">4.5 |</p>
+                                                </div>
+                                                    <div>
+                                                        <p class="rating-text sold ms-2 fz-14" style="margin-bottom: 1rem"> terjual {{$product->sold}}</p>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="row" >
+                                                <livewire:frontend.c-t-a.wish-cart :product="$product">
+    
+                                            </div>
+                                            </div>
+                                        </div>
+                                    
+                                        
+                                    </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
-  {{-- Livewire --}}
-<livewire:frontend.brand.view :products="$products" :brands="$brands"/>
-</div>
 
 @endsection
-
-
-
-
-
-{{-- 
-<div class="container min-height-510 mt-5">
-    <div class="row pt-5">
-        <div class="col-md p-3">
-            <div class="d-flex flex-wrap gap-4 justify-content-center">
-                @foreach($products as $product)
-                    <a href="{{ url('brands/'.$brands->slug.'/'.$product->slug) }}"
-                        style="text-decoration: none; color:black">
-                        <div class="card card-product">
-                            <img src="{{ asset('image/uploads/products/'.$product->_ProductImages->image) }}"
-                                class="card-img-top card-img-product" alt="product">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div class="">
-                                        <p class="card-title product-name">{{ $product->name }}</p>
-                                        <p class="dlv-to text-muted">Dikirim ke United Kingdom</p>
-                                        <p class="price">Rp.
-                                            {{ number_format($product->original_price,2,',','.'); }},-
-                                        </p>
-                                        <div class="d-flex align-items-center discount">
-                                            <div class="discount-percentage">50%</div>
-                                            <div class="discount-price text-muted">Rp.
-                                                {{ number_format($product->selling_price,2,',','.'); }},-
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center conclusion-product">
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <p class="rating-text text-muted">4.5</p>
-                                            |
-                                            <p class="rating-text text-muted sold">terjual 1260</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-column align-items-center justify-content-between">
-                                        <p class="weight-product">500g</p>
-                                        <div class="d-flex flex-column product-card-icon">
-                                            <div>
-                                                <img src="{{ asset('frontend/img/ico/wishlist/wishlist-off.svg') }}"
-                                                    alt="" onclick="toggleWishlist(this)"
-                                                    onmouseover="hoverWishlist(this)" onmouseout="outWishlist(this)">
-                                            </div>
-                                            <div>
-                                                <img src="{{ asset('frontend/img/ico/addcart/addcart-off.svg') }}"
-                                                    alt="" onclick="toggleCart(this)" onmouseover="hoverCart(this)"
-                                                    onmouseout="outCart(this)">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</div> --}}
+@section('script')
+<script>
+    $(document).on('contentChanged', function(e) {
+        $(".show-more-link").parent().toggleClass('list--show-hidden list--show-all');
+        $(".show-more-link").text("Tampilkan lebih banyak..." ? "Tampilkan lebih sedikit..." : "Tampilkan lebih banyak...");
+        $(function () {
+        $('.product-name').each(function () {
+            len = $(this).text().length;
+            if (len > 50) {
+                $(this).text($(this).text().substring(0, 50) + "...");
+            }
+        });
+        });
+    })
+</script>
+@endsection

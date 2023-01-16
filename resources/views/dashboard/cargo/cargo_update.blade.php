@@ -18,7 +18,7 @@
     <div class="card-header ">
         <div class="d-flex flex-row justify-content-between items-center">
             <p>Update Cargo</p>
-          <a class="btn btn-primary" href="{{url('admin/category')}}">Back</a>
+          <a class="btn btn-lihat-sm" href="{{url('admin/cargo')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -28,7 +28,7 @@
             <div class="col-md-12">
               <label for="zona_id" class="form-label">Zona</label>
               <select class="form-select" aria-label="Default select example" name="zona_id">
-                <option selected>Select Zona</option>
+                <option selected value="{{null}}">Select Zona</option>
                 @foreach ($zonas as $zona)
                   <option value="{{$zona->value}}" {{$zona->value == $cargo->zona_id ? 'selected':''}}>{{$zona->name}}</option>
                 @endforeach
@@ -47,11 +47,15 @@
               <input type="text" class="form-control" id="max_weight" name="max_weight" value="{{$cargo->max_weight}}">
             </div>
             <div class="col-md-12">
-              <label for="price" class="form-label">Price</label>
+              <label for="price_bersama" class="form-label">Harga Bersama</label>
+              <input type="number" class="form-control" id="price_bersama" name="price_bersama" value="{{$cargo->price_bersama}}">
+            </div>
+            <div class="col-md-12">
+              <label for="price" class="form-label">Harga Perorangan</label>
               <input type="number" class="form-control" id="price" name="price" value="{{$cargo->price}}">
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-lihat-sm">Update</button>
             </div>
           </form>
     </div>

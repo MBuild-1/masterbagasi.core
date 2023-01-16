@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body{
   font-family: 'Roboto';
@@ -27,7 +28,7 @@ background-color: #FEF9F3;
 
 
 .slide_right:hover {
-  box-shadow: inset 500px 0 0 0 #ffffff70;
+  box-shadow: inset 540px 0 0 0 #ffffff70;
 }
 
 #outer {

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Http;
+
 
 
 class LoginController extends Controller
@@ -41,11 +43,19 @@ class LoginController extends Controller
             Cookie::queue(Cookie::forget('mbu'));
             Cookie::queue(Cookie::forget('mbp'));
         }
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+        ])->post('https://masterbagasi.online/api/v1/login', [
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        // dd($response->body(['token']));
         if (Auth::user()->role == '1') {
             return redirect('/admin/dashboard')->with('message', 'Welcome to Dasboard');
         } else {
             return redirect('/');
         }
+
 
         // if (Auth::user()->role == '1') {
         //     return redirect('/admin/dashboard')->with('message', 'Welcome to Dasboard');
@@ -61,7 +71,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/login');
+        return redirect('/');
     }
 
     /**

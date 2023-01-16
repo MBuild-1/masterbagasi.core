@@ -18,7 +18,7 @@
     <div class="card-header ">
         <div class="d-flex flex-row justify-content-between items-center">
             <p>Update Country</p>
-          <a class="btn btn-primary" href="{{url('admin/country')}}">Back</a>
+          <a class="btn btn-lihat-sm" href="{{url('admin/country')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -30,7 +30,7 @@
               <select class="form-select" aria-label="Default select example" name="zona_id">
                 <option selected>Select Zona</option>
                 @foreach ($zonas as $zona)
-                  <option value="{{$zona->id}}">{{$zona->name}}</option>
+                  <option value="{{$zona->id}}" {{$zona->id == $country->zona_id ? 'selected':''}}>{{$zona->name}}</option>
                 @endforeach
               </select>
             </div>
@@ -43,7 +43,7 @@
               <input type="text" class="form-control" id="code" name="code" value="{{$country->code}}">
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-lihat-sm">Update</button>
             </div>
           </form>
     </div>

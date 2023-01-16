@@ -24,7 +24,7 @@
     <div class="card-header">
         <div class="d-flex flex-row justify-content-between">
             <p>ADD Brand</p>
-            <a class="btn btn-primary" href="{{ url('admin/brands') }}">Back</a>
+            <a class="btn btn-lihat-sm" href="{{ url('admin/brands') }}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -43,12 +43,12 @@
               </select>
             </div>
            
-            <div class="col-md-6 input-group">
+            <div class="col-md input-group">
                 <input type="file" class="form-control" id="image" name="image">
                 <label class="input-group-text" for="image">Upload</label>
             </div>
             <div class="col-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-lihat-sm">Add</button>
             </div>
         </form>
     </div>

@@ -18,10 +18,11 @@ class CountryController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $countries = Country::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
+            $countries = Country::orderBy("name", "asc")->where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
         } else {
-            $countries = Country::paginate(10);
+            $countries = Country::orderBy("name", "asc")->paginate(10);
         }
+
         Session::put('current_page', request()->fullUrl());
         $count = Country::all();
         return view('dashboard.country.index', compact('count', 'countries'));
@@ -34,7 +35,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        $zonas = Zona::all();
+        return view('dashboard.country.country_add', compact('zonas'));
     }
 
     /**
@@ -45,7 +47,16 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $country = new Country;
+        $country->zona_id = $request->zona_id;
+        $country->name = $request->name;
+        $country->code = $request->code;
+        $country->save();
+
+        if (session('current_page')) {
+            return redirect(session('current_page'));
+        }
+        return redirect('admin/country');
     }
 
     /**
@@ -85,7 +96,7 @@ class CountryController extends Controller
         $country->zona_id = $request->zona_id;
         $country->name = $request->name;
         $country->code = $request->code;
-        $country->save();
+        $country->update();
 
         if (session('current_page')) {
             return redirect(session('current_page'));
@@ -101,6 +112,8 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $country = Country::find($id);
+        $country->delete();
+        return redirect()->back();
     }
 }

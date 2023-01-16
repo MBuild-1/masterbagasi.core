@@ -1,84 +1,121 @@
-
-
-<div class="container d-flex flex-row">
-    <div class="row mt-5" style="margin-right: 14px">
-        <div class="col">
-            <div class="card" style="width: 14rem;cursor:default;">
-                <div class="card-header fw-bold">
-                    Filter
+<div class="row">
+  <div class="col-3">
+    <div class="card shadow">
+      <div class="card-header fw-bold ">
+        <h3 style="font-size: 20px;" class="mt-2">Filter</h3>
+      </div>
+      <ul class="list-group list-group-flush">
+        <div style="border-bottom: 2px solid rgba(221, 221, 221, 0.466)" class="py-2 side-dd">
+          <button class="dropdown-btn" style="font-size: 16px; font-weight: 700">Kategori
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container pb-2">
+            @foreach($allcategories as $category)
+              <a href="{{ $category->slug }}" class="py-1">
+                <div class="">
+                  {{ $category->name }}
                 </div>
-                <ul class="list-group list-group-flush">
-                    <p class="list-group-item">Brand</p>
-                    <li class="list-group-item">
-                        <div class="form-check d-flex flex-column">
-                            @foreach($categories->brand as $item)
-                                <div class="my-1">
-                                    <input class="form-check-input" wire:model="inputBrands" type="checkbox"
-                                        value="{{ $item->name }}" id="{{ $item->name }}" style="cursor: pointer">
-                                    <label class="form-check-label" for="{{ $item->name }}">
-                                        {{ $item->name }}
-                                    </label>
+              </a>
+            @endforeach
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="d-flex flex-wrap gap-2 px-0">
+        @foreach($products as $product)
+          <a href="{{ url('category/'.$categories->slug.'/'.$product->slug) }}" style="text-decoration: none; color:black;">
+            <div class="d-flex flex-wrap">
+                <div class="card card-product card-nih">
+                    @if ($product->ProductImages->isEmpty())
+                    <img src="{{ asset('frontend/img/default_product.png') }}">
+                    @else
+                    <img src="{{ asset('image/uploads/products/'.$product->_ProductImages->image) }}">
+                    @endif
+                    <div class="card-body pt-0">
+                        <div class="container">
+                            <div class="row pb-2">
+                                <div class="d-flex" style="height: 1.7rem">
+                                <div class="position-absolute label-product px-3 py-1">
+                                    Terviral
                                 </div>
-                            @endforeach
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-5 px-2" style="margin-left: 10px;">
-        <div class="col-md category-product">
-            <div class="d-flex gap-3 flex-wrap">
-                @foreach($products as $product)
-                    <a href="{{ url('category/'.$categories->slug.'/'.$product->slug) }}"
-                        style="text-decoration: none; color:black">
-                        <div class="card card-product">
-                            <img src="{{ asset('image/uploads/products/'.$product->_ProductImages->image) }}"
-                                class="card-img-top card-img-product" alt="product" width="50px">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div class="">
-                                        <p class="card-title product-name">{{ $product->name }}</p>
-                                        <p class="dlv-to text-muted">Dikirim ke United Kingdom</p>
-                                        <p class="price">Rp.
-                                            {{ number_format($product->original_price,2,',','.'); }},-
-                                        </p>
-                                        <div class="d-flex align-items-center discount">
-                                            <div class="discount-percentage">50%</div>
-                                            <div class="discount-price text-muted">Rp.
-                                                {{ number_format($product->selling_price,2,',','.'); }},-
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center conclusion-product">
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <p class="rating-text text-muted">4.5</p>
-                                            |
-                                            <p class="rating-text text-muted sold">terjual 1260</p>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="product-name fz-16 hg-40">{{$product->name}}</p>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center align-items-center hg-30">
+                                <div class="col-7 d-flex justify-content-start pe-0">
+                                    <p class="price fz-16 mb-0" >Rp{{number_format($product->selling_price,0,',','.');}}</p>
+                                </div>
+                                <div class="col">
+                                  <div class="d-flex justify-content-between">
+                                      <span class="border-kiri"></span>
+                                      <p class="mb-0">
+                                          <strong class="fz-15">{{$product->weight}}</strong>  
+                                          <span class="fz-12">Kg</span> 
+                                      </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col d-flex justify-content-start">
+                                <div class="d-flex justify-content-center align-content-center">
+                                    <i class="bi bi-star-fill text-warning me-1 fz-14"></i>
+                                    <p class="rating-text fz-14 border-kanan">4.5</p>
+                                </div>
+                                <div>
+                                    <p class="rating-text fz-14 sold ms-2"> terjual {{$product->sold}}</p>
+                                </div>  
+                                </div>
+                            </div>
+                            <div class="row" >
+                                @php
+                                if(Auth::check()){
+                                $wishlistCheck = App\Models\Wishlists::where('product_id',
+                                $product->id)->where('user_id', Auth::user()->id)->exists();
+                                }
+                            @endphp
+                            <div class="col" style="height: 46px; width: 216px">
+                                <div class="row">
+                                    <div class="col-3 pe-0">
+                                        @if(Auth::check())
+                                            @if($wishlistCheck)
+                                                <img wire:click.prevent='addToWishlist({{ $product->id }})'
+                                                    src="{{ asset('frontend/img/ico/wishlist/cta/wishlist-aktif.svg') }}"
+                                                    style="box-sizing: border-box;width: 50px;">
+                                            @else
+                                                <img class="keranjang-hov"
+                                                    wire:click.prevent='addToWishlist({{ $product->id }})'
+                                                    src="{{ asset('frontend/img/ico/wishlist/cta/wishlist-off.svg') }}"
+                                                    style="box-sizing: border-box">
+                                            @endif
+                                        @else
+                                            <img class="keranjang-hov"
+                                                wire:click.prevent='addToWishlist({{ $product->id }})'
+                                                src="{{ asset('frontend/img/ico/wishlist/cta/wishlist-off.svg') }}"
+                                                style="box-sizing: border-box">
+                                        @endif
                                     </div>
-                    <div class="d-flex flex-column align-items-center justify-content-between">
-                        <p class="weight-product">500g</p>
-                        <div class="d-flex flex-column product-card-icon">
-                            @if (isset($product->wishlist->product_id) == isset($product->id))
-                            <div>
-                                <img wire:click.prevent='addToWishlist({{ $product->id }})'
-                                    src="{{ asset('frontend/img/ico/wishlist/wishlist-aktif.svg') }}">
+                                    <div class="col-9 pe-3 d-flex my-auto">
+                                        <button wire:click.prevent='addToCart({{ $product->id }})'
+                                            class="btn btn-cart-produk">+
+                                            Keranjang</button>
+                                    </div>
+                                </div>
                             </div>
-                        @else
-                            <div>
-                                <img wire:click.prevent='addToWishlist({{ $product->id }})'
-                                    src="{{ asset('frontend/img/ico/wishlist/wishlist-off.svg') }}">
                             </div>
-                @endif
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+          </a>
+        @endforeach
+      </div>
     </div>
-</div>
-</div>
-</a>
-
-@endforeach
-</div>
-</div>
-</div>
+  </div>
 </div>

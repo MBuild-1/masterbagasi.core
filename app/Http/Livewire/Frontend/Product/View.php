@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Frontend\Product;
 
+use App\Models\BuyNow;
 use App\Models\Cart;
 use App\Models\Wishlists;
 use Illuminate\Support\Facades\Auth;
@@ -79,13 +80,22 @@ class View extends Component
                 }
             }
         } else {
-            $this->dispatchBrowserEvent('message', [
-                'text' => 'Login is Login',
-                'type' => 'warning',
-                'status' => 401
-            ]);
-            return redirect('/login');
+            $this->dispatchBrowserEvent('popupLogin');
         }
+    }
+
+    public function buyNow($product)
+    {
+        $product_buynow = BuyNow::where('user_id', Auth::user()->id)->first();
+        if ($product_buynow !== null)
+            $product_buynow->delete();
+        $buynow = new BuyNow;
+        $buynow->user_id = Auth::user()->id;
+        $buynow->product_id = $product;
+        $buynow->quantity = 1;
+        $buynow->save();
+        $this->emit('buynow');
+        return redirect()->to('/buynow');
     }
 
     public function incrementQuantity()
@@ -117,18 +127,9 @@ class View extends Component
                 $wishlist->product_id = $product_id;
                 $wishlist->save();
                 $this->wishlistIsset = Wishlists::where('product_id', $product_id)->where('user_id', Auth::user()->id)->exists();
-                $this->dispatchBrowserEvent('message', [
-                    'text' => 'Wishlist berhasil ditambah, ',
-                    'type' => 'mb',
-                    'status' => 200
-                ]);
             }
         } else {
-            $this->dispatchBrowserEvent('message', [
-                'text' => 'Login is required',
-                'type' => 'warning',
-                'status' => 401
-            ]);
+            $this->dispatchBrowserEvent('popupLogin');
         }
     }
 

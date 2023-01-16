@@ -23,19 +23,19 @@
 <div class="card">
     <div class="card-header">
         <div class="d-flex flex-row justify-content-between">
-            <p>ADD Video</p>
-            <a class="btn btn-primary" href="{{url('admin/videos')}}">Back</a>
+            <p>ADD Youtube Reels</p>
+            <a class="btn btn-lihat-sm" href="{{url('admin/videos')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
         <form class="row g-3" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="col-md-6 input-group">
+            <div class="col-md input-group">
               <input type="file" class="form-control" id="video" name="video">
               <label class="input-group-text" for="video">Upload</label>
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-lihat-sm">Add</button>
             </div>
           </form>
     </div>

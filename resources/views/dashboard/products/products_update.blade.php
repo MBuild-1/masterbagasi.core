@@ -29,7 +29,7 @@
   <div class="card-header">
       <div class="d-flex flex-row justify-content-between">
           <p>Update Product</p>
-          <a class="btn btn-primary" href="{{url('admin/products')}}">Back</a>
+          <a class="btn btn-lihat-sm" href="{{url('admin/products')}}">Back</a>
       </div>
   </div>
   <div class="card-body">
@@ -52,12 +52,20 @@
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="hastags-tab" data-bs-toggle="pill" data-bs-target="#hastags" type="button" role="tab" aria-controls="hastags" aria-selected="false">Hastags</button>
             </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="color-tab" data-bs-toggle="pill" data-bs-target="#color" type="button" role="tab" aria-controls="color" aria-selected="false">Colors</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="flavor-tab" data-bs-toggle="pill" data-bs-target="#flavor"
+                  type="button" role="tab" aria-controls="flavor" aria-selected="false">Flavor</button>
+            </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
               <div class="mb-3">
                 <label for="">Select Category</label>
                 <select class="form-select" aria-label="Default select example" name="category_id">
+                  <option class="scrollable-menu" value="{{null}}">Product No Category</option>
                   @foreach ($categories as $category)
                    <option value="{{$category->id}}" {{$category->id == $product->category_id ? 'selected':''}}>{{$category->name}}</option>
                   @endforeach
@@ -66,6 +74,7 @@
               <div class="mb-3">
                 <label for="">Select Province</label>
                 <select class="form-select " aria-label="Default select example" name="province_id" >
+                  <option class="scrollable-menu" value="{{null}}">Product No Province</option>
                   @foreach ($maps as $map)
                   <option class="scrollable-menu"value="{{$map->id}}" {{$map->id == $product->province_id ? 'selected':''}}>{{$map->title}}</option>
                 @endforeach
@@ -78,6 +87,7 @@
               <div class="mb-3">
                 <label for="">Select Brand</label>
                 <select class="form-select" aria-label="Default select example" name="brand">
+                  <option class="scrollable-menu" value="{{null}}">Product No Brand</option>
                   @foreach ($brands as $brand)
                    <option value="{{$brand->name}}" {{$brand->name == $product->brand ? 'selected':''}}>{{$brand->name}}</option>
                   @endforeach
@@ -151,10 +161,10 @@
             <div class="tab-pane fade" id="hastags" role="tabpanel" aria-labelledby="hastags-tab" tabindex="0">
               @foreach ($hastags as $hastag)
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="hastags" name="hastags[{{$hastag->id}}]" value="{{$hastag->id}}">
-                <label class="form-check-label" for="hastags">
+                <label class="form-label" for="hastags{{$hastag->id}}">
                   {{$hastag->hastag}}
                 </label>
+                <input class="form-check-input position-static" type="checkbox" id="hastags{{$hastag->id}}" name="hastags[{{$hastag->id}}]" value="{{$hastag->id}}">
               </div>
               @endforeach
               <div class="table-responsive">
@@ -189,7 +199,113 @@
                 </table>
               </div>
             </div>
-            <button class="btn btn-primary" type="submit">Update</button>
+            <div class="tab-pane fade" id="color" role="tabpanel" aria-labelledby="color-tab" tabindex="0">
+              @foreach ($colors as $color)
+              <div class="form-check">
+                <label class="form-label" for="color{{$color->id}}">
+                  {{$color->name}}
+                </label>
+                <input class="form-check-input position-static" type="checkbox" id="color{{$color->id}}" name="colors[{{$color->id}}]" value="{{$color->id}}">
+              </div>
+              @endforeach
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Colors</th>
+                      <th>Code</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($product->productColor as $prodColor)
+                    <tr class="color-tr">
+                      @if ($prodColor->color)
+                        <td>
+                        {{$prodColor->color->name}}
+                        </td>
+                      @else
+                      <td>
+                       No Colors
+                      </td>
+                      @endif
+                      <td>{{$prodColor->color->code}}</td>
+                      <td>
+                        <button class="btn btn-danger btn-sm btnProductColor" value="{{$prodColor->id}}" >Delete</button>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="flavor" role="tabpanel" aria-labelledby="flavor-tab" tabindex="0">
+              <div class="row">
+             
+                  @foreach($flavors as $flavor)
+                      <div class="col-4">
+                          <hr class="mt-2 mb-3"/>
+                          <div class="form-check">
+                              <label class="form-label" for="flavors{{ $flavor->id }}">
+                                  {{ $flavor->name }}
+                              </label>
+                              <input class="form-check-input position-static" type="checkbox"
+                                  id="flavors{{ $flavor->id }}" name="flavors[{{ $flavor->id }}]"
+                                  value="{{ $flavor->id }}">
+                                  <div class="mb-3">
+                                      <label for="price" class="form-label">Price</label>
+                                      <input type="text" class="form-control" id="price" name="price[{{ $flavor->id }}]" >
+                                    </div>
+                                  <div class="mb-3">
+                                      <label for="info" class="form-label">Info</label>
+                                      <input type="text" class="form-control" id="info" name="info[{{ $flavor->id }}]" >
+                                    </div>
+                                  <div class="mb-3">
+                                      <label for="description" class="form-label">Description</label>
+                                      <textarea name="description_flavor[{{ $flavor->id }}]" id="description" cols="30" rows="5" class="form-control" placeholder="Description"></textarea>
+                                    </div>
+                                  <div class="mb-3">
+                                      <label for="composition" class="form-label">Composition</label>
+                                      <textarea name="composition[{{ $flavor->id }}]" id="composition" cols="30" rows="5" class="form-control" placeholder="Description"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="weight" class="form-label">Weight</label>
+                                      <input type="text" class="form-control" id="weight" name="weight_flavor[{{ $flavor->id }}]" >
+                                    </div>
+                          </div>
+                      </div>
+                  @endforeach
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($product->productFlavor as $prodFlavor)
+                        <tr class="flavor-tr">
+                          @if ($prodFlavor->flavor)
+                            <td>
+                            {{$prodFlavor->flavor->name}}
+                            </td>
+                          @else
+                          <td>
+                           No Flavor
+                          </td>
+                          @endif
+                          <td>
+                            <button class="btn btn-danger btn-sm btnProductFlavor" value="{{$prodFlavor->id}}" >Delete</button>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+          </div> 
+            <button class="btn btn-lihat-sm" type="submit">Update</button>
           </div>
         </form>
   </div>
@@ -205,23 +321,56 @@
             }
         });
 
-
-
-    $('.btnProductHastag').click(function (e) { 
-      
-      var prod_hastag = $(this).val();
-      $.ajax({
-        type: "GET",
-        url: "/admin/product-hastag/"+prod_hastag+"/delete",
-        success: function (response) {
-          alert(response.success);
-          $(this).closest('.hastag-tr').remove();
-        }
-      });
-    });
+        $('.btnProductHastag').click(function (e) { 
+          var prod_hastag = $(this).val();
+          $.ajax({
+            type: "GET",
+            url: "/admin/product-hastag/"+prod_hastag+"/delete",
+            success: function (response) {
+              alert(response.success);
+              $(this).closest('.hastag-tr').remove();
+            }
+          });
+        });
       });
 
-   
+      $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.btnProductColor').click(function (e) { 
+          var prod_color = $(this).val();
+          $.ajax({
+            type: "GET",
+            url: "/admin/product-color/"+prod_color+"/delete",
+            success: function (response) {
+              alert(response.success);
+              $(this).closest('.color-tr').remove();
+            }
+          });
+        });
+      });
+
+      $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.btnProductFlavor').click(function (e) { 
+          var prod_flavor = $(this).val();
+          $.ajax({
+            type: "GET",
+            url: "/admin/product-flavor/"+prod_flavor+"/delete",
+            success: function (response) {
+              alert(response.success);
+              $(this).closest('.flavor-tr').remove();
+            }
+          });
+        });
+      });
 
     </script>
 @endsection

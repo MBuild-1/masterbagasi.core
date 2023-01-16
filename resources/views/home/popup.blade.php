@@ -620,84 +620,38 @@
         <div id="pop-banjang" class="container pop-banjang" style="color: #fff">
           <div class="row mt-5 pb-3">
             <div class="col-md">
-              <div class="card text-center" style="background-color: #00A9EA" >
-                <div class="card-header">Air Fraight</div>
+              <div class="card text-center" style="background-color: #ff4200" >
+                <div class="card-header">Air Freight/Kg</div>
               </div>
             </div>
           </div>
-          <div class="row d-flex flex-row justify-content-center">
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #F9B973">1 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card " >
-                <div class="card-header" style="background-color: #FAA863">2 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #FB9752">3 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #FC8642">4 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #FC7531">5 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #FD6421">6 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #FE5310">10 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #FF4200">16 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="card text-center" >
-                <div class="card-header" style="background-color: #25258C">1 Kg</div>
-                <div class="card-bodyy">
-                  <h5 class="card-title">Rp 450,000</h5>
-                </div>
-              </div>
-            </div>
+          <div class="row d-flex flex-row justify-content-center px-3">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Klioan</th>
+                    <th scope="col">Perorangan</th>
+                    <th scope="col">Bersama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Rp 123123</td>
+                    <td>Rp 321321</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Rp 123123</td>
+                    <td>Rp 321321</td>
+                  </tr>
+                  <tr>
+                    <td>3 </td>
+                    <td>Rp 123123</td>
+                    <td>Rp 321321</td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
 
         </div>

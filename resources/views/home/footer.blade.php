@@ -1,122 +1,148 @@
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted mt-5">
-    <!-- Section: Social media -->
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-      <!-- Left -->
-      <div class="me-5 d-none d-lg-block">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
-  
-      <!-- Right -->
-      <div>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-      <!-- Right -->
-    </section>
-    <!-- Section: Social media -->
-  
-    <!-- Section: Links  -->
-    <section class="">
-      <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Content -->
-            <h6 class="text-uppercase fw-bold mb-4">
-             <img src="{{ asset('frontend/img/ico/default/logo.svg')}}" alt="">
-            </h6>
-            <p>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit.
-            </p>
+<footer class="text-center text-lg-start bg-light text-muted mt-5 bg-footer pt-1">
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start my-4">
+      <!-- Grid row -->
+      <div class="row ">
+
+        <div class="col-md-5 col-lg-5 col-xl-5 mx-auto">
+          <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-3">
+                Master Bagasi
+              </h6>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Tentang Master Bagasi</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Master Bagasi Care</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Peluang Karir</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Syarat dan ketentuan</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Kebijakan Privasi</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none  ">Blog Master Bagasi</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-3">
+                Layanan
+              </h6>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MB Mart</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MB Trip</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MB Build</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MB Pay</a>
+              </p>
+              
+              <h6 class="text-uppercase fw-bold my-3">Komunitas</h6>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MB Program Afiliasi</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MB Mitra UMKM</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">MBestie</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md col-lg col-xl mx-auto">
+              <!-- Links -->
+
+              <h6 class="text-uppercase fw-bold mb-3">Ikuti Kami</h6>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">Facebook</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">Instagram</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Tiktok</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">Twitter</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">LinkedIn</a>
+              </p>
+
+            </div>
+
+            {{-- <div class="col-md-3 col-lg-3 col-xl-3 mx-auto">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-3">Ikuti Kami</h6>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">Facebook</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">Instagram</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#" class="text-reset text-decoration-none ">Tiktok</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">Twitter</a>
+              </p>
+              <p class="hover-orange mb-2">
+                <a href="#!" class="text-reset text-decoration-none ">LinkedIn</a>
+              </p>
+
+            </div> --}}
+            <!-- Grid column -->
           </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Products
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Pricing</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-            <p>
-              <i class="fas fa-envelope me-3"></i>
-              info@example.com
-            </p>
-            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-          </div>
-          <!-- Grid column -->
         </div>
-        <!-- Grid row -->
+
+        <!-- Grid column -->
+        <div class="col-md-7 col-lg-7 col-xl-7 mx-auto">
+          <!-- Content -->
+          {{-- <div class="position-relative">
+              <img src="{{ asset('frontend/img/maskot/earth-plane.png') }}" alt=""
+          style="display: block; margin: 0 auto;">
+          <img src=" {{ asset('frontend/img/maskot/splash-circle.png') }}" alt=""
+            class="position-absolute splash-circle" style="width: 85%; top: 0; right: 5%">
+          <img src=" {{ asset('frontend/img/maskot/splash-bagas1.png') }}" alt=""
+            class="position-absolute splash-bagas" style="width: 90px; top: 220px; right: 150px">
+          <img src=" {{ asset('frontend/img/maskot/splash-masta1.png') }}" alt=""
+            class="position-absolute splash-masta" style="width: 90px; top: 200px; right: 20px">
+        </div> --}}
+        <div class="w-100 h-100" style="background-color: #b3b3b3">
+
+        </div>
       </div>
-    </section>
-    <!-- Section: Links  -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2022 Copyright:
-      <a class="text-reset fw-bold" href="www.masterbagasi.com">Master Bagasi</a>
+      <!-- Grid column -->
     </div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+    <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 - 2023, PT BHK
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->

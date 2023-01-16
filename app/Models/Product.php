@@ -28,6 +28,7 @@ class Product extends Model
         'meta_tittle',
         'meta_keyword',
         'meta_description',
+        'sold',
     ];
 
     public function category()
@@ -69,5 +70,13 @@ class Product extends Model
     public function wishlist()
     {
         return $this->belongsTo(Wishlists::class, 'id', 'product_id');
+    }
+    public function productColor()
+    {
+        return $this->hasMany(productColor::class, 'product_id', 'id');
+    }
+    public function productFlavor()
+    {
+        return $this->hasMany(productFlavor::class, 'product_id', 'id');
     }
 }

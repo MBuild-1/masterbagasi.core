@@ -11,6 +11,10 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function buynow()
+    {
+        return view('buynow.buynow');
+    }
     public function index()
     {
         return view('checkout.checkout');

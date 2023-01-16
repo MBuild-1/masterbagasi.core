@@ -4,14 +4,19 @@ namespace App\Http\Livewire\Frontend\Cart;
 
 use App\Models\Cart;
 use App\Models\Wishlists;
+use App\Models\ProductHastags;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+
 
 
 class View extends Component
 {
     public $cart, $products, $total, $total_weight;
 
+    protected $listeners = [
+        'cartUpdated' => 'render'
+    ];
 
     public function addToWishlist($id)
     {
@@ -82,9 +87,11 @@ class View extends Component
 
     public function render()
     {
+        $this->dispatchBrowserEvent('contentChanged');
+
         $this->cart = Cart::where('user_id', Auth::user()->id)->get();
         return view('livewire.frontend.cart.view', [
-            "cart" =>  $this->cart,
+            "cart" =>  $this->cart
         ]);
     }
 }

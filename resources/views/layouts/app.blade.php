@@ -4,7 +4,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script type="text/javascript"
     src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="SB-Mid-client-lL_4Lk3YRATrkR5F"></script>
@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-
+    <link rel="icon" type="image/png" href="{{ asset('frontend/img/ico/default/Favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 
     {{-- 1. owl carousel min.css --}}
@@ -38,14 +38,16 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style2.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/if.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/hebron.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/rijal.css') }}">
+    
+    
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @livewireStyles
 
-
-            <title>MB</title>
-
+    <title>Masterbagasi - Bringing Happines Into Your Table!</title>
 </head>
 
 <body>
@@ -61,6 +63,7 @@
     <!-- Optional JavaScript; choose one of the two! -->
     @livewireScripts
 
+    
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -89,7 +92,8 @@
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 
     {{-- main.js --}}
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/if.js') }}"></script>
     <script src="{{ asset('frontend/js/hebron.js') }}"></script>
@@ -102,27 +106,27 @@
     <script src="{{ asset('frontend/js/jquery.sticky.js') }}"></script>
     @yield('script')
     <script>
+        $(document).on('load', function() {
+            $('#exampleModalToggle').modal('show');
+        });
         window.addEventListener('message', e => {
             if(e.detail){
                 alertify.set('notifier', 'position', 'top-center');
                 alertify.notify(e.detail.text, e.detail.type);
             }   
         });
+        window.addEventListener('popupLogin', event => {
+        $('#login').modal('show');
+        })
     </script>
-        <script type="text/javascript">
-            var Tawk_API = Tawk_API || {},
-                Tawk_LoadStart = new Date();
-            (function () {
-                var s1 = document.createElement("script"),
-                    s0 = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/63621e07daff0e1306d5409d/1ggrkajuf';
-                s1.charset = 'UTF-8';
-                s1.setAttribute('crossorigin', '*');
-                s0.parentNode.insertBefore(s1, s0);
-            })();
-        </script>
+   <script type="text/javascript">
+window.$crisp=[];window.CRISP_WEBSITE_ID="51d58d78-b842-42db-9c29-0a6ef1498f78";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+    </script>
     @stack('scripts')
+
+<script> //<![CDATA[
+function labnolThumb(e){return'<img class="youtube-thumb" src="//i.ytimg.com/vi/'+e+'/hqdefault.jpg"><div class="play-button"></div>'}function labnolIframe(){var e=document.createElement("iframe");e.setAttribute("src","//www.youtube.com/embed/"+this.parentNode.dataset.id+"?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=0&showinfo=0"),e.setAttribute("frameborder","0"),e.setAttribute("id","youtube-iframe"),this.parentNode.replaceChild(e,this)}!function(){for(var e=document.getElementsByClassName("youtube-player"),t=0;t<e.length;t++){var a=document.createElement("div");a.innerHTML=labnolThumb(e[t].dataset.id),a.onclick=labnolIframe,e[t].appendChild(a)}}();
+//]]> </script>
 </body>
 
 </html>

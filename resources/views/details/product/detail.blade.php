@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@include('home.navbar')
 @section('content')
 
 

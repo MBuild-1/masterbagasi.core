@@ -24,7 +24,7 @@
     <div class="card-header">
         <div class="d-flex flex-row justify-content-between">
             <p>ADD Cargo</p>
-            <a class="btn btn-primary" href="{{url('admin/cargo')}}">Back</a>
+            <a class="btn btn-lihat-sm" href="{{url('admin/cargo')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -52,11 +52,15 @@
               <input type="text" class="form-control" id="max_weight" name="max_weight">
             </div>
             <div class="col-md-12">
-              <label for="price" class="form-label">Price</label>
+              <label for="price_bersama" class="form-label">Harga Bersama</label>
+              <input type="number" class="form-control" id="price_bersama" name="price_bersama">
+            </div>
+            <div class="col-md-12">
+              <label for="price" class="form-label">Harga Perorangan</label>
               <input type="number" class="form-control" id="price" name="price">
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-lihat-sm">Add</button>
             </div>
           </form>
     </div>

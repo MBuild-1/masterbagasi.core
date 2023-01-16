@@ -9,8 +9,10 @@ class Banner extends Model
 {
     use HasFactory;
 
-    protected $table='banner';
+    protected $table = 'banner';
     protected $fillable = [
-         'image',
+        'image',
+        'name',
+        'slug',
     ];
 }

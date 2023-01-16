@@ -18,7 +18,7 @@
     <div class="card-header ">
         <div class="d-flex flex-row justify-content-between items-center">
             <p>Update Hastag</p>
-          <a class="btn btn-primary" href="{{url('admin/hastags')}}">Back</a>
+          <a class="btn btn-lihat-sm" href="{{url('admin/hastags')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -34,12 +34,14 @@
               <input type="text" class="form-control" id="hastag" name="hastag" value="{{$hastag->hastag}}">
             </div>
             <div class="col-md-12">
-              <div class="col-md-12">
-                Status  :  <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="status" style="width:30px; height: 30px" {{$hastag->status ? 'checked':''}}>
+              <div class="form-check">
+                <input class="form-check-input position-static" type="checkbox" id="status" name="status"
+                      value="option1" aria-label="..."  {{$hastag->status ? 'checked':''}}>
+                  <label for="status" class="form-label">Status</label>
               </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-lihat-sm">Update</button>
             </div>
           </form>
     </div>

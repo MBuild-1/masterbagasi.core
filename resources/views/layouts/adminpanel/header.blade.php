@@ -1,66 +1,37 @@
-<header class="topbar" data-navbarbg="skin5">
-    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-        <div class="navbar-header" data-logobg="skin6">
-            <!-- ============================================================== -->
-            <!-- Logo -->
-            <!-- ============================================================== -->
-            <a class="navbar-brand" href="{{url('/')}}">
-                <!-- Logo icon -->
-                <b class="logo-icon">
-                    <!-- Dark Logo icon -->
-                    {{-- <img src="plugins/images/logo-icon.png" alt="homepage" /> --}}
-                </b>
-                <!--End Logo icon -->
-                <!-- Logo text -->
-                <span class="logo-text">
-                    <!-- dark Logo text -->
-                    <img src="{{asset('image/logo/logo.png')}}" alt="homepage" width="150px" class="p-3"/>
-                </span>
-            </a>
-            <!-- ============================================================== -->
-            <!-- End Logo -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
-            <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-                href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Logo -->
-        <!-- ============================================================== -->
-        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-           
-            <!-- ============================================================== -->
-            <!-- Right side toggle and nav items -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav ms-auto d-flex align-items-center">
+  <!-- Topbar -->
+  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <!-- ============================================================== -->
-                <!-- Search -->
-                <!-- ============================================================== -->
-                <li class=" in">
-                    <form role="search" class="app-search d-none d-md-block me-3">
-                        <input type="text" placeholder="Search..." class="form-control mt-0">
-                        <a href="" class="active">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
-                <!-- ============================================================== -->
-                <!-- User profile and search -->
-                <!-- ============================================================== -->
-                <li>
-                    <a class="profile-pic" href="#">
-                        <img src="{{Auth::user()->avatar}}" alt="user-img" width="36"
-                            class="img-circle">
-                          
-                            <span class="text-white font-medium">{{Auth::user()->name}}</span></a>
-                </li>
-                <!-- ============================================================== -->
-                <!-- User profile and search -->
-                <!-- ============================================================== -->
-            </ul>
-        </div>
-    </nav>
-</header>
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
+                <img class="img-profile rounded-circle"
+                    src="{{ asset(Auth::user()->avatar) }}">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <form action="{{ url('/logout') }}" method="POST">
+                    @csrf
+                    <button class="dropdown-item">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </butt>
+                </form>
+                
+            </div>
+        </li>
+
+    </ul>
+
+</nav>
+<!-- End of Topbar -->

@@ -91,7 +91,6 @@
 .has-child-cate .toggle-control:hover::after,
 .has-child-cate .toggle-control:hover::before,
 .widget.filter-widget .vertical-list li a.btn-control:hover::before,
-.add-to-cart:hover,
 .detail-media .flex-control-nav .owl-nav button:hover,
 .wrap-iten-in-cart .products-cart .quantity .quantity-input .btn:hover,
 .wrap-pagination-info .page-numbers li .page-number-item:hover {
@@ -100,7 +99,6 @@
 .flex-control-thumbs img.flex-active,
 .wrap-product-detail .advance-info .tab-control a.active,
 .quantity-input .btn:hover,
-.add-to-cart:hover,
 .product-widget-style .thumbnnail a:hover img,
 .choose-payment-methods
     .payment-method

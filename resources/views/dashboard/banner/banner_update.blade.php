@@ -18,20 +18,24 @@
     <div class="card-header ">
         <div class="d-flex flex-row justify-content-between items-center">
             <p>Update Banner</p>
-          <a class="btn btn-primary" href="{{url('admin/banner')}}">Back</a>
+          <a class="btn btn-lihat-sm" href="{{url('admin/banner')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
+      <img src="{{asset('image/uploads/banner/'.$banner->image)}}" class="img-thumbnail mb-5" width="400px" alt="">
         <form class="row g-3" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="col-md-6 input-group">
-                  <img src="{{asset('image/uploads/banner/'.$banner->image)}}" class="img-thumbnail" width="200px" alt="">
+            <div class="col-md-12">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="{{$banner->name}}">
+            </div>
+            <div class="col-md input-group">
                   <input type="file" class="form-control" id="image" name="image" >
                   <label class="input-group-text" for="image">Upload</label>
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-lihat-sm">Update</button>
             </div>
           </form>
     </div>

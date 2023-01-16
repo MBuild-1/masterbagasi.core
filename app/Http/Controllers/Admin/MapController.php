@@ -16,10 +16,14 @@ class MapController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $maps = Province::paginate(10);
         $count = Province::all();
+        if ($request->has('search')) {
+            $maps = Province::where('title', 'LIKE', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $maps = Province::paginate(10);
+        }
         return view('dashboard.map.index', compact('maps', 'count'));
     }
 
@@ -45,9 +49,9 @@ class MapController extends Controller
         $map->title = $request->title;
         $map->slug = Str::slug($request->title);
         $map->vector = $request->vector;
-        $map->description = $request->description;
-        $map->kebudayaan = $request->kebudayaan;
-        $map->makanan = $request->makanan;
+        $map->description = '';
+        $map->kebudayaan = '';
+        $map->makanan = '';
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('YmdHi') . $file->getClientOriginalName();
@@ -94,9 +98,9 @@ class MapController extends Controller
         $map->title = $request->title;
         $map->slug = Str::slug($request->title);
         $map->vector = $request->vector;
-        $map->description = $request->description;
-        $map->kebudayaan = $request->kebudayaan;
-        $map->makanan = $request->makanan;
+        $map->description = '';
+        $map->kebudayaan = '';
+        $map->makanan = '';
         if ($request->file('image')) {
             $path = 'image/uploads/provinces/' . $map->image;
             if (file::exists($path)) {
@@ -107,7 +111,7 @@ class MapController extends Controller
             $file->move(public_path('image/uploads/provinces/'), $filename);
             $map->image = $filename;
         }
-        $map->save();
+        $map->update();
         return redirect('admin/map');
     }
 

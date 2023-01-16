@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@include('home.navbar')
 @section('content')
 <div class="container pop-banjang py-5 " style="color: #fff">
     <div class="row py-4">

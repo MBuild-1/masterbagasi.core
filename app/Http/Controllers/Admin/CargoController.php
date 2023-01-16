@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cargo;
 use App\Models\Country;
 use App\Models\Zona;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class CargoController extends Controller
@@ -18,7 +19,8 @@ class CargoController extends Controller
     public function index()
     {
         $count = Cargo::all();
-        $cargos = Cargo::paginate(10);
+        $cargos = Cargo::paginate(9);
+        Session::put('current_page', request()->fullUrl());
         return view('dashboard.cargo.index', compact('count', 'cargos'));
     }
 
@@ -48,7 +50,11 @@ class CargoController extends Controller
         $cargo->min_weight = $request->min_weight;
         $cargo->max_weight = $request->max_weight;
         $cargo->price = $request->price;
+        $cargo->price_bersama = $request->price_bersama;
         $cargo->save();
+        if (session('current_page')) {
+            return redirect(session('current_page'));
+        }
         return redirect('admin/cargo');
     }
 
@@ -91,7 +97,11 @@ class CargoController extends Controller
         $cargo->min_weight = $request->min_weight;
         $cargo->max_weight = $request->max_weight;
         $cargo->price = $request->price;
+        $cargo->price_bersama = $request->price_bersama;
         $cargo->save();
+        if (session('current_page')) {
+            return redirect(session('current_page'));
+        }
         return redirect('admin/cargo');
     }
 

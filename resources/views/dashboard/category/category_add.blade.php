@@ -24,7 +24,7 @@
     <div class="card-header">
         <div class="d-flex flex-row justify-content-between">
             <p>ADD Category</p>
-            <a class="btn btn-primary" href="{{url('admin/category')}}">Back</a>
+            <a class="btn btn-lihat-sm" href="{{url('admin/category')}}">Back</a>
         </div>
     </div>
     <div class="card-body">
@@ -34,12 +34,12 @@
               <label for="name" class="form-label">Name</label>
               <input type="text" class="form-control" id="name" name="name">
             </div>
-            <div class="col-md-6 input-group">
+            <div class="col-md input-group">
               <input type="file" class="form-control" id="image" name="image">
               <label class="input-group-text" for="image">Upload</label>
             </div>
             <div class="col-12 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-lihat-sm">Add</button>
             </div>
           </form>
     </div>

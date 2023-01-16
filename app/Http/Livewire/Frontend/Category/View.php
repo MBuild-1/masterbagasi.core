@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend\Category;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Wishlists;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,51 @@ class View extends Component
         $this->categories = $categories;
         $this->products = $products;
     }
+    public function addToCart($product_id)
+    {
 
+        // dd($this->products->where('id', $product_id)->first());
+        if (Auth::check()) {
+            // IF PRODUCT EXIST
+            if (Cart::where('product_id', $product_id)->where('user_id', Auth::user()->id)->exists()) {
+                $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product_id)->first();
+                $cart->user_id = Auth::user()->id;
+                $cart->product_id = $product_id;
+                $cart->quantity =  $cart->quantity + 1;
+                $this->emit('cartUpdated');
+                $cart->save();
+                $this->dispatchBrowserEvent('message', [
+                    'text' => 'Product successfully added to cart',
+                    'type' => 'success',
+                    'status' => 200
+                ]);
+            } else {
+                if ($this->products->where('id', $product_id)->first()) {
+                    $cart = new Cart();
+                    $cart->user_id = Auth::user()->id;
+                    $cart->product_id = $product_id;
+                    $cart->quantity = 1;
+
+                    $this->emit('cartUpdated');
+                    $cart->save();
+
+                    $this->dispatchBrowserEvent('message', [
+                        'text' => 'Product successfully added to cart',
+                        'type' => 'success',
+                        'status' => 200
+                    ]);
+                } else {
+                    $this->dispatchBrowserEvent('message', [
+                        'text' => 'Product does not exist',
+                        'type' => 'warning',
+                        'status' => 401
+                    ]);
+                }
+            }
+        } else {
+            $this->dispatchBrowserEvent('popupLogin');
+        }
+    }
     public function addToWishlist($product_id)
     {
 
@@ -46,16 +91,14 @@ class View extends Component
                 ]);
             }
         } else {
-            $this->dispatchBrowserEvent('message', [
-                'text' => 'Login is required',
-                'type' => 'warning',
-                'status' => 401
-            ]);
+            $this->dispatchBrowserEvent('popupLogin');
         }
     }
 
     public function render()
     {
+        $allcategories = Category::all();
+        $this->dispatchBrowserEvent('contentChanged');
         $this->products = Product::where('category_id', $this->categories->id)
             ->when($this->inputBrands, function ($q) {
                 $q->whereIn('brand', $this->inputBrands);
@@ -64,6 +107,7 @@ class View extends Component
         return view('livewire.frontend.category.view', [
             'products' => $this->products,
             'categories' => $this->categories,
+            'allcategories' => $allcategories
 
         ]);
     }

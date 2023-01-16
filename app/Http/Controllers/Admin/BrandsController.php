@@ -8,6 +8,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\BrandImport;
+use App\Imports\FirstSheet;
 
 class BrandsController extends Controller
 {
@@ -16,6 +19,12 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function import(Request $request)
+    {
+        Excel::import(new FirstSheet, $request->file('excel_brand'));
+        return redirect()->back();
+    }
+
     public function index(Request $request)
     {
         if ($request->has('search')) {

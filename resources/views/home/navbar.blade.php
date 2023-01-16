@@ -1,74 +1,82 @@
+{{-- navbar awal --}}
 <nav class="navbar navbar-expand-lg navbar-light bg-light " style="z-index: 19;">
-    <div class="container-fluid px-5">
+    <div class="container-fluid ps-4">
         {{-- Logo --}}
         <a href="/" class="nav-logo">
-            <img src="{{ asset('frontend/img/ico/default/logo.svg') }}" width="120px;">
+            <img src="{{ asset('frontend/img/ico/default/logo.svg') }}" width="140px;">
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             {{-- deliver --}}
-            <div class="d-flex flex-row justify-content-center align-content-center mx-5 deliver"
-                onclick="popUpDelivery()">
+            <div class="d-flex flex-row justify-content-center align-content-center deliver"
+            data-bs-toggle="modal" data-bs-target="#deliverto">
                 <div>
                     <img src="{{ asset('frontend/img/ico/default/location-off.svg') }}"
-                        class="pt-3" alt="">
+                        style="padding-top: 12px;" alt="">
                 </div>
-                <div id="deliver-hover" style="min-width: 110px;">
-                    <p style="font-size:11px; margin-bottom:0">Deliver to
-                        <span style="font-weight:bold; font-size:.8vw;" class="d-block">United Kindom</span></p>
-                </div>
+               {{-- Livewire Change Country --}}
+              <livewire:frontend.cargo.change-country>
             </div>
+             <livewire:frontend.cargo.deliverto>
             {{-- Search --}}
-            <form class="d-flex my-0 mx-4" style="width: 60%;" action="{{ url('/search') }}"
+            <form class="d-flex my-0 ms-2" style="width: 70%;" action="{{ url('/search') }}"
                 method="GET">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                <input class="form-control me-2" type="search" placeholder="Cari barang disini" aria-label="Search"
                     value="{{ Request::get('search') }}" name="search" autocomplete="off">
             </form>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-4 mb-2 mb-lg-0 nav-lis-custom">
 
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <div class="inbox-icon ic-size"></div>
                     </a>
+                    @if (Auth::check())
+                        
                     <ul class="dropdown-menu dropdown-menu-lg-end chat_ul" aria-labelledby="navbarDropdown">
                         <li class="chat_li">
-                            <div class="dropdown-item d-flex p-0" href="#">
-                                <div class="chat_icon"></div>
-                                <div class="chat_data">
-                                    <div class="chat_title">
-                                        Chat
-                                    </div>
-                                    <div class="chat_subtit">
-                                        Percakapan pribadi Anda
+                            <a href="/profile/chat">
+                                <div class="d-flex p-0" href="#">
+                                    <div class="chat_icon"></div>
+                                    <div class="chat_data">
+                                        <div class="chat_title">
+                                            Chat
+                                        </div>
+                                        <div class="chat_subtit">
+                                            Percakapan pribadi Anda
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                         <li class="chat_li">
-                            <div class="dropdown-item d-flex p-0" href="#">
-                                <div class="diskusi_icon"></div>
-                                <div class="chat_data">
-                                    <div class="chat_title">
-                                        Diskusi
-                                    </div>
-                                    <div class="chat_subtit">
-                                        Tanya jawab seputar produk
+                            <a href="/profile/diskusi_produk">
+                                <div class="d-flex p-0" href="#">
+                                    <div class="diskusi_icon"></div>
+                                    <div class="chat_data">
+                                        <div class="chat_title">
+                                            Diskusi Produk
+                                        </div>
+                                        <div class="chat_subtit">
+                                            Tanya jawab seputar produk
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                         <li class="chat_li">
-                            <div class="dropdown-item d-flex p-0" href="#">
-                                <div class="ulasan_icon"></div>
-                                <div class="chat_data">
-                                    <div class="chat_title">
-                                        Ulasan
-                                    </div>
-                                    <div class="chat_subtit">
-                                        Berikan penilaian dan ulasan Produk
+                            <a href="/profile/ulasan">
+                                <div class="d-flex p-0" href="#">
+                                    <div class="ulasan_icon"></div>
+                                    <div class="chat_data">
+                                        <div class="chat_title">
+                                            Ulasan Pengiriman
+                                        </div>
+                                        <div class="chat_subtit">
+                                            Berikan penilaian dan ulasan Pengiriman
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                         <li class="chat_li">
                             <div class="dropdown-item d-flex p-0" href="#">
@@ -85,6 +93,9 @@
                         </li>
 
                     </ul>
+                    @else
+                        
+                    @endif
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -92,7 +103,9 @@
                         <div class="notif-icon ic-size"></div>
                     </a>
                     {{-- nav-tabs => nav-link --}}
-                    <div class="dropdown-menu dropdown-menu-lg-end nav-tabs my-0" style="
+                    
+                  @if (Auth::check())
+                  <div class="dropdown-menu dropdown-menu-lg-end nav-tabs my-0" style="
                     border-top-left-radius: 0;
                     border-top-right-radius: 0;
                   ">
@@ -173,51 +186,131 @@
                             </div>
                         </div>
                     </div>
+                  @else
+                  @endif
+                    
                 </li>
                 {{-- CART DROPDOWN LIVEWIRE --}}
                 <livewire:frontend.cart-notif.view/>
-               
-
+                
             </ul>
 
+
             <div class="d-flex flex-row justify-content-center align-content-center loginAkun"
-                style="text-decoration: none; color:#898989; cursor: pointer;" onclick="popUpLogin()" href="">
+                style="text-decoration: none; color:#898989; cursor: pointer;">
 
                 @if(!Auth::user())
                     <div class="d-flex flex-row justify-content-center align-items-center">
-                        <a class="nav-link" style="color: black;" href="/login">
-                            <Span style="font-weight:bold; font-size:14px;" id="akun-span"
-                                class="btn  btn-outline-primary btn-sm">Masuk </Span>
-                        </a>
-                        <a class="nav-link" style="color: black;" href="/register">
-                            <Span style="font-weight:bold; font-size:14px;" id="akun-span"
-                                class="btn btn-primary btn-sm">Daftar </Span>
+                        {{-- Livewire Popup Login --}}
+                        <livewire:frontend.popup.login>
+                        <a class="nav-link px-0" style="color: black; width: 100px" href="/register">
+                            <Span style="font-weight:bold; font-size:14px; width: 100px;" id="akun-span"
+                                class="btn btn-border btn-oren btn-sm">Daftar </Span>
                         </a>
                     </div>
                 @else
-                    <ul class="nav nav-tabs">
-                        <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid rounded-circle" width="50px">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" style="color: black;" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <Span style="font-weight:bold; font-size:16.5px;" id="akun-span">Halo
-                                    {{ Auth::user()->name }}</Span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('profile-edit') }}">User Settings</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ route('wishlist') }}">Wishlist</a></li>
-                                <li>
-                                    <form action="{{ url('/logout') }}" method="POST">
-                                        @csrf
-                                        <button class="dropdown-item" type="submit">Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
+                <a href="">
+                <ul class="nav nav-tabs" >
+                        <a href="{{ route('profile-edit') }}">
+                            <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid" width="40px">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px" style="color: black;" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <Span style="font-weight:bold; font-size:16.5px;" id="akun-span">
+                                        {{ Auth::user()->name }}</Span>
+                                </a>
+                                <ul class="dropdown-menu profile-dd">
+                                    <div class="profile-dd-con">
+                                        <div class="profile-dd-head">
+                                            <div class="profile-dd-head-img"><img src="{{ asset(Auth::user()->avatar) }}" alt=""></div>
+                                            <div class="profile-dd-head-ket">
+                                                <div> {{ Auth::user()->name }}</div>
+                                                <div class="d-flex"> 
+                                                    <img src="{{asset('frontend/img/ico/profile/bronze.svg')}}" alt="" class="my-auto me-2">
+                                                    Member Silver
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="profile-dd-body">
+                                            <div class="profile-dd-body-left">
+                                                <div class="body-premium">
+                                                    <a class="dropdown-item" href="#">
+                                                        <div class="wrapp">
+                                                            <img src="{{asset('frontend/img/dummy/MBpay.svg')}}" alt="">
+                                                            <p>Saldo</p>
+                                                            <p>Koin</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="pt-1">
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Kumpulkan Koin</a>
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Kupon Promo Saya</a>
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">MB Afiliasi</a>
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">MB Mitra</a>
+                                                </div>
+                                            </div>
+                                            <div class="profile-dd-body-right">
+                                                <a class="dropdown-item" href="{{ route('profile-edit') }}">Pembelian</a>
+                                                <a class="dropdown-item" href="{{ route('wishlist') }}">Wishlist</a>
+                                                <a class="dropdown-item" href="{{ route('profile-edit') }}">Merek Favorit</a>
+                                                <a class="dropdown-item" href="{{ route('profile-edit') }}">Pengaturan</a> <div class="garis"></div>
+                                                <a class="dropdown-item" href="{{ route('menusharingcart') }}">Keranjang Bersama</a>
+
+                                                <div class="profile-dd-body-right-out">
+                                                    <form action="{{ url('/logout') }}" method="POST">
+                                                        @csrf
+                                                        <button class="dropdown-item d-flex" type="submit">
+                                                            Keluar
+                                                            <img src="{{asset('frontend/img/ico/logout/logout.svg')}}" alt="" class="logo-out my-auto">
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="col">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <div class="card" style="width: 18rem;">
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item">MB Pay</li>
+                                                                <li class="list-group-item">Saldo</li>
+                                                                <li class="list-group-item">Koin</li>
+                                                            </ul>
+                                                        </div>
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Kumpulkan Koin</a></li>
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Kupon Promo Saya</a></li>
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">MB Afiliasi</a></li>
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">MB Mitra</a></li>
+                                                    </div>
+                                                    <div>
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Pembelian</a></li>
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('wishlist') }}">Wishlist</a>
+                                                        </li>
+                                                        
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Merek Favorit</a></li>
+                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Pengaturan</a></li>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <li>
+                                                            <form action="{{ url('/logout') }}" method="POST">
+                                                                @csrf
+                                                                <button class="dropdown-item" type="submit">Keluar</button>
+                                                            </form>
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                        </div>
+                                    </div>
+                                </ul>
+                            </li>
                     </ul>
+                </a>
                 @endif
             </div>
         </div>
     </div>
 </nav>
+{{-- navbar end --}}

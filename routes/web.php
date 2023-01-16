@@ -22,6 +22,10 @@ Route::get('/password/reset', function () {
     return view('auth.passwords.email');
 })->middleware('guest')->name('password.request');
 
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('cache:clear');
+});
+
 // HOME CONTROLLER OR FRONEND CONTROLLER
 Route::controller(App\Http\Controllers\HomeController::class)->group(function () {
     Route::get('/',  'index')->name('home');
@@ -33,12 +37,24 @@ Route::controller(App\Http\Controllers\HomeController::class)->group(function ()
     Route::get('/category/{category_slug}/{product_slug}',  'product_category')->name('product_category');
     Route::get('/brands/{brand_slug}',  'brands')->name('brands');
     Route::get('/brands/{brand_slug}/{product_slug}',  'product_brand')->name('brands');
-    Route::get('/hastag/{hastag_slug}',  'hastag')->name('hastag');
+    Route::get('/hastag/{hastag_slug}',  'hastags')->name('hastag');
+    Route::get('/hastag/{hastag_slug}/{product_slug}',  'product_hastags')->name('hastag');
+    Route::get('/news/{news_slug}',  'news')->name('news');
+    Route::post('/news/{news_slug}/subs/add',  'subsnews')->name('subsnews');
+    Route::get('/promo/{promo_slug}',  'promo')->name('promo');
+    Route::get('/ulasan-pengiriman', 'ulasanPengiriman');
 });
 // EDIT PROFILE CONTROLLER
 Route::controller(App\Http\Controllers\EditProfileController::class)->group(function () {
     Route::get('profile/edit', 'index')->name('profile-edit');
     Route::put('profile/edit', 'update');
+    Route::get('profile/menunggu-pembayaran', 'menungguPembayaran');
+    Route::get('profile/daftar-transaksi', 'daftarTransaksi');
+    Route::get('profile/update-notif', 'updateNotif');
+    Route::get('profile/ulasan', 'ulasan');
+    Route::get('profile/diskusi_produk', 'diskusiProduk');
+    Route::get('profile/chat', 'chatProfile');
+    Route::get('profile/merek_favorit','merekFavorit');
 });
 // WISHLIST CONTROLLER
 Route::middleware(['auth'])->group(function () {
@@ -47,9 +63,12 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::controller(App\Http\Controllers\CartController::class)->group(function () {
         Route::get('cart', 'index')->name('cart');
+        Route::get('menusharingcart', 'menusharingcart')->name('menusharingcart');
+        Route::get('sharingcart', 'sharingcart')->name('sharingcart');
     });
     Route::controller(App\Http\Controllers\CheckoutController::class)->group(function () {
         Route::get('checkout', 'index')->name('checkout');
+        Route::get('buynow', 'buynow');
     });
 });
 
@@ -59,6 +78,7 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // INDEX ADMIN PANEL
     Route::get('dashboard', [App\Http\Controllers\Admin\AdminPanelController::class, 'index']);
+    Route::get('users', [App\Http\Controllers\Admin\UserController::class, 'index']);
     // CATEGORY CONTROLLER
     Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function () {
         Route::get('category', 'index');
@@ -78,6 +98,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('products/{id}/delete', 'destroyImage');
         Route::get('products/product/{id}/delete', 'destroy');
         Route::get('product-hastag/{id}/delete', 'destroyHastag');
+        Route::get('product-color/{id}/delete', 'destroyColor');
+        Route::get('product-flavor/{id}/delete', 'destroyFlavor');
+
+        // EXCEL ROUTE
+        route::post('importProduct', 'import')->name('excel.import');
     });
 
 
@@ -89,6 +114,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('brands/{id}/edit',  'edit');
         Route::put('brands/{id}/edit',  'update');
         Route::delete('brands/brand/{id}/delete',  'destroy');
+        // EXCEL ROUTE
+        route::post('importBrand', 'import');
     });
 
     // VIDEO HOME CONTROLLER
@@ -131,8 +158,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     //COUNTRY CONTROLLER
     Route::controller(App\Http\Controllers\Admin\CountryController::class)->group(function () {
         Route::get('country', 'index');
+        Route::get('country/add', 'create');
+        Route::post('country/add', 'store');
         Route::get('country/{id}/edit', 'edit');
         Route::put('country/{id}/edit', 'update');
+        Route::delete('country/{id}/delete', 'destroy');
     });
     // MAP CONTROLLER
     Route::controller(App\Http\Controllers\Admin\MapController::class)->group(function () {
@@ -142,6 +172,30 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('map/{id}/edit', 'edit');
         Route::put('map/{id}/edit', 'update');
         Route::delete('map/{id}/delete', 'destroy');
+    });
+    Route::controller(App\Http\Controllers\Admin\NewsController::class)->group(function () {
+        Route::get('news', 'index');
+        Route::get('news/add', 'create');
+        Route::post('news/add', 'store');
+        Route::get('news/{id}/edit', 'edit');
+        Route::put('news/{id}/edit', 'update');
+        Route::delete('news/{id}/delete', 'destroy');
+    });
+    Route::controller(App\Http\Controllers\Admin\ColorController::class)->group(function () {
+        Route::get('color', 'index');
+        Route::get('color/add', 'create');
+        Route::post('color/add', 'store');
+        Route::get('color/{id}/edit', 'edit');
+        Route::put('color/{id}/edit', 'update');
+        Route::delete('color/{id}/delete', 'destroy');
+    });
+    Route::controller(App\Http\Controllers\Admin\FlavorController::class)->group(function () {
+        Route::get('flavor', 'index');
+        Route::get('flavor/add', 'create');
+        Route::post('flavor/add', 'store');
+        Route::get('flavor/{id}/edit', 'edit');
+        Route::put('flavor/{id}/edit', 'update');
+        Route::delete('flavor/{id}/delete', 'destroy');
     });
 });
 

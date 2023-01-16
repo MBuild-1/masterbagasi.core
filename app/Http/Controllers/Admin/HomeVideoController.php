@@ -4,94 +4,118 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Brands;
-use App\Models\Category;
 use App\Models\Hastag;
 use App\Models\HomeVideo;
-use App\Models\Product;
-use App\Models\ProductHastags;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class HomeVideoController extends Controller
 {
+    public function index(Request $request)
+    {
+        $count = HomeVideo::all();
+        if ($request->has('search')) {
+
+            $homevideo = HomeVideo::orderBy('id', 'desc')->where('hastag', 'LIKE', '%' . $request->search . '%')->orWhere('name', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        } else {
+            $homevideo = HomeVideo::orderBy('id', 'desc')->paginate(5);
+        }
+        return view('dashboard.homevideo.index', compact('homevideo', 'count'));
+    }
+
     /**
-     * Create a new controller instance.
+     * Show the form for creating a new resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-
+    public function create()
+    {
+        return view('dashboard.homevideo.homevideo_add');
+    }
 
     /**
-     * Show the application dashboard.
+     * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function store(Request $request)
     {
+        $request->validate([
+            'video' => 'mimes:mp4|required',
 
-        $products = Product::all();
-        $categories = Category::all();
-        $brands = Brands::all();
-        $hastags = Hastag::where('status', '1')->first();
-
-        return view('home', compact('products', 'categories', 'brands', 'hastags'));
-    }
-
-
-    public function category($category_slug)
-    {
-        $categories = Category::where('slug', $category_slug)->first();
-        if ($categories) {
-            $products = $categories->Products()->get();
-            return view('category.category', compact('categories', 'products'));
-        } else {
-            return redirect()->back();
+        ]);
+        $homevideo = new HomeVideo();
+        if ($request->file('video')) {
+            $file = $request->file('video');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('video/uploads/home/'), $filename);
+            $homevideo->video = $filename;
         }
+        $homevideo->save();
+        return redirect('admin/videos')->with('success', "Data successfuly Created");
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
-    public function product_category($category_slug, $product_slug)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $categories = Category::where('slug', $category_slug)->first();
-        if ($categories) {
-            $products = $categories->Products()->where('slug', $product_slug)->first();
-            if ($products) {
-                return view('category.details', compact('categories', 'products'));
-            } else {
-                return redirect()->back();
+        $homevideo = HomeVideo::find($id);
+        return view('dashboard.homevideo.homevideo_update', compact('homevideo'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'video' => 'mimes:mp4|required',
+
+        ]);
+        $homevideo = HomeVideo::find($id);
+        if ($request->file('video')) {
+            $path = 'video/uploads/home/' . $homevideo->video;
+            if (file::exists($path)) {
+                file::delete($path);
             }
-        } else {
-            return redirect()->back();
+            $file = $request->file('video');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('video/uploads/home/', $filename);
+            $homevideo->video = $filename;
         }
+        $homevideo->update();
+        return redirect('admin/videos')->with('success', "Data successfuly updated");
     }
 
-    public function brands($brand_slug)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $brands = Brands::where('slug', $brand_slug)->first();
-        if ($brands) {
-            $products = $brands->Products()->get();
-            return view('brands.brands', compact('brands', 'products'));
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function product_brand($brand_slug, $product_slug)
-    {
-        $brands = Brands::where('slug', $brand_slug)->first();
-        if ($brands) {
-            $products = $brands->Products()->where('slug', $product_slug)->first();
-            if ($products) {
-                return view('brands.details', compact('brands', 'products'));
-            } else {
-                return redirect()->back();
-            }
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function detailProduct()
-    {
-        return view('details.product.detail');
+        $homevideo = HomeVideo::find($id);
+        $homevideo->delete();
+        return redirect('admin/videos')->with('success', "Data successfuly Deleted");
     }
 }
