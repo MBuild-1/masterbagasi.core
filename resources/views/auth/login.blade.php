@@ -37,7 +37,10 @@
                             <svg class="dash" viewBox="-10 0 50 1"><line x1="-9" x2="39"></line></svg>
                         </div>
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('auth.login') }}">
+                            @if (session('message'))
+                                {{ session('message') }}
+                            @endif
                             @csrf
                             <div class="form-floating form-white my-3">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;  
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
 
@@ -43,9 +44,11 @@ class LoginController extends Controller
             Cookie::queue(Cookie::forget('mbu'));
             Cookie::queue(Cookie::forget('mbp'));
         }
+
+        dd($request->all());
         $response = Http::withHeaders([
             'Accept' => 'application/json',
-        ])->post('https://masterbagasi.online/api/v1/login', [
+        ])->post(API::URL()['login'], [
             'email' => $request->email,
             'password' => $request->password,
         ]);

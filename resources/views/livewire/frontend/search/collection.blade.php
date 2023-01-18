@@ -78,7 +78,7 @@
                                                     style="height: 40px;">
                                                     <div class="col-8 d-flex justify-content-start pe-0">
                                                         <p class="price">
-                                                            Rp{{ number_format($product->selling_price,0,',','.'); }}
+                                                            Rp{{ number_format($product->selling_price,0,',','.') }}
                                                         </p>
                                                     </div>
                                                     <div class="col ps-0">
@@ -184,7 +184,7 @@
                                                     style="height: 40px;">
                                                     <div class="col-8 d-flex justify-content-start pe-0">
                                                         <p class="price">
-                                                            Rp{{ number_format($product->selling_price,0,',','.'); }}
+                                                            Rp{{ number_format($product->selling_price,0,',','.') }}
                                                         </p>
                                                     </div>
                                                     <div class="col ps-0">

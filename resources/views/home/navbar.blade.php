@@ -18,7 +18,7 @@
             </div>
              <livewire:frontend.cargo.deliverto>
             {{-- Search --}}
-            <form class="d-flex my-0 ms-2" style="width: 65%;" action="{{ url('/search') }}"
+            <form class="d-flex my-0 ms-2" style="width: 60%;" action="{{ url('/search') }}"
                 method="GET">
                 <input class="form-control me-2" type="search" placeholder="Cari barang disini" aria-label="Search"
                     value="{{ Request::get('search') }}" name="search" autocomplete="off">
@@ -200,8 +200,7 @@
 
             <div class="d-flex flex-row justify-content-center align-content-center loginAkun"
                 style="text-decoration: none; color:#898989; cursor: pointer;">
-
-                @if(!Auth::user())
+                @empty($user)
                     <div class="d-flex flex-row justify-content-center align-items-center">
                         {{-- Livewire Popup Login --}}
                         <livewire:frontend.popup.login>
@@ -211,108 +210,108 @@
                         </a>
                     </div>
                 @else
-                <a href="">
-                <ul class="nav nav-tabs" >
-                            <li class="nav-item ms-2">
-                                <a href="{{ route('profile-edit') }}">
-                                <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid" width="40px">
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle px" style="color: black;" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <Span style="font-weight:bold; font-size:16.5px;" id="akun-span">
-                                        {{ Auth::user()->name }}</Span>
-                                </a>
-                                <ul class="dropdown-menu profile-dd">
-                                    <div class="profile-dd-con">
-                                        <div class="profile-dd-head">
-                                            <div class="profile-dd-head-img"><img src="{{ asset(Auth::user()->avatar) }}" alt=""></div>
-                                            <div class="profile-dd-head-ket">
-                                                <div> {{ Auth::user()->name }}</div>
-                                                <div class="d-flex"> 
-                                                    <img src="{{asset('frontend/img/ico/profile/bronze.svg')}}" alt="" class="my-auto me-2">
-                                                    Member Silver
+                    <a href="">
+                    <ul class="nav nav-tabs" >
+                                <li class="nav-item ms-2">
+                                    <a href="{{ route('profile-edit') }}">
+                                    <img src="{{ $user['avatar'] ? $user['avatar'] : 'https://ui-avatars.com/api/?name='.Str::slug($user['name']).'&background=0D8ABC&color=fff'  }}" alt="" class="img-fluid" width="40px">
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle px" style="color: black;" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <Span style="font-weight:bold; font-size:16.5px;" id="akun-span">
+                                            {{ $user['name'] }}</Span>
+                                    </a>
+                                    <ul class="dropdown-menu profile-dd">
+                                        <div class="profile-dd-con">
+                                            <div class="profile-dd-head">
+                                                <div class="profile-dd-head-img"><img src="{{ $user['avatar'] ? $user['avatar'] : 'https://ui-avatars.com/api/?name='.Str::slug($user['name']).'&background=0D8ABC&color=fff' }}" alt=""></div>
+                                                <div class="profile-dd-head-ket">
+                                                    <div> {{ $user['name'] }}</div>
+                                                    <div class="d-flex"> 
+                                                        <img src="{{asset('frontend/img/ico/profile/bronze.svg')}}" alt="" class="my-auto me-2">
+                                                        Member Silver
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="profile-dd-body">
-                                            <div class="profile-dd-body-left">
-                                                <div class="body-premium">
-                                                    <a class="dropdown-item" href="#">
-                                                        <div class="wrapp">
-                                                            <img src="{{asset('frontend/img/dummy/MBpay.svg')}}" alt="">
-                                                            <p>Saldo</p>
-                                                            <p>Koin</p>
-                                                        </div>
-                                                    </a>
+                                            <div class="profile-dd-body">
+                                                <div class="profile-dd-body-left">
+                                                    <div class="body-premium">
+                                                        <a class="dropdown-item" href="#">
+                                                            <div class="wrapp">
+                                                                <img src="{{asset('frontend/img/dummy/MBpay.svg')}}" alt="">
+                                                                <p>Saldo</p>
+                                                                <p>Koin</p>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="pt-1">
+                                                        <a class="dropdown-item" href="{{ route('profile-edit') }}">Kumpulkan Koin</a>
+                                                        <a class="dropdown-item" href="{{ route('profile-edit') }}">Kupon Promo Saya</a>
+                                                        <a class="dropdown-item" href="{{ route('profile-edit') }}">MB Afiliasi</a>
+                                                        <a class="dropdown-item" href="{{ route('profile-edit') }}">MB Mitra</a>
+                                                    </div>
                                                 </div>
-                                                <div class="pt-1">
-                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Kumpulkan Koin</a>
-                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Kupon Promo Saya</a>
-                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">MB Afiliasi</a>
-                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">MB Mitra</a>
-                                                </div>
-                                            </div>
-                                            <div class="profile-dd-body-right">
-                                                <a class="dropdown-item" href="{{ route('profile-edit') }}">Pembelian</a>
-                                                <a class="dropdown-item" href="{{ route('wishlist') }}">Wishlist</a>
-                                                <a class="dropdown-item" href="{{ route('profile-edit') }}">Merek Favorit</a>
-                                                <a class="dropdown-item" href="{{ route('profile-edit') }}">Pengaturan</a> <div class="garis"></div>
-                                                <a class="dropdown-item" href="{{ route('menusharingcart') }}">Keranjang Bersama</a>
+                                                <div class="profile-dd-body-right">
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Pembelian</a>
+                                                    <a class="dropdown-item" href="{{ route('wishlist') }}">Wishlist</a>
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Merek Favorit</a>
+                                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">Pengaturan</a> <div class="garis"></div>
+                                                    <a class="dropdown-item" href="{{ route('menusharingcart') }}">Keranjang Bersama</a>
 
-                                                <div class="profile-dd-body-right-out">
-                                                    <form action="{{ url('/logout') }}" method="POST">
-                                                        @csrf
-                                                        <button class="dropdown-item d-flex" type="submit">
-                                                            Keluar
-                                                            <img src="{{asset('frontend/img/ico/logout/logout.svg')}}" alt="" class="logo-out my-auto">
-                                                        </button>
-                                                    </form>
+                                                    <div class="profile-dd-body-right-out">
+                                                        <form action="{{ route('auth.logout') }}" method="POST">
+                                                            @csrf
+                                                            <button class="dropdown-item d-flex" type="submit">
+                                                                Keluar
+                                                                <img src="{{asset('frontend/img/ico/logout/logout.svg')}}" alt="" class="logo-out my-auto">
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- <div class="col">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <div class="card" style="width: 18rem;">
-                                                            <ul class="list-group list-group-flush">
-                                                                <li class="list-group-item">MB Pay</li>
-                                                                <li class="list-group-item">Saldo</li>
-                                                                <li class="list-group-item">Koin</li>
-                                                            </ul>
+                                                {{-- <div class="col">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <div class="card" style="width: 18rem;">
+                                                                <ul class="list-group list-group-flush">
+                                                                    <li class="list-group-item">MB Pay</li>
+                                                                    <li class="list-group-item">Saldo</li>
+                                                                    <li class="list-group-item">Koin</li>
+                                                                </ul>
+                                                            </div>
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Kumpulkan Koin</a></li>
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Kupon Promo Saya</a></li>
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">MB Afiliasi</a></li>
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">MB Mitra</a></li>
                                                         </div>
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Kumpulkan Koin</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Kupon Promo Saya</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">MB Afiliasi</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">MB Mitra</a></li>
+                                                        <div>
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Pembelian</a></li>
+                                                            <li><a class="dropdown-item"
+                                                                    href="{{ route('wishlist') }}">Wishlist</a>
+                                                            </li>
+                                                            
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Merek Favorit</a></li>
+                                                            <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Pengaturan</a></li>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <li>
+                                                                <form action="{{ url('/logout') }}" method="POST">
+                                                                    @csrf
+                                                                    <button class="dropdown-item" type="submit">Keluar</button>
+                                                                </form>
+                                                            </li>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Pembelian</a></li>
-                                                        <li><a class="dropdown-item"
-                                                                href="{{ route('wishlist') }}">Wishlist</a>
-                                                        </li>
-                                                        
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Merek Favorit</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('profile-edit') }}">Pengaturan</a></li>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <li>
-                                                            <form action="{{ url('/logout') }}" method="POST">
-                                                                @csrf
-                                                                <button class="dropdown-item" type="submit">Keluar</button>
-                                                            </form>
-                                                        </li>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+                                                </div> --}}
+                                            </div>
                                         </div>
-                                    </div>
-                                </ul>
-                            </li>
-                    </ul>
-                </a>
-                @endif
+                                    </ul>
+                                </li>
+                        </ul>
+                    </a>
+                @endempty
             </div>
         </div>
     </div>

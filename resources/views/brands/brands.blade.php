@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="row d-flex justify-content-center align-items-center py-1">
                                                 <div class="col-8 d-flex justify-content-start">
-                                                <p class="price fz-16" >Rp{{number_format($product->selling_price,0,',','.');}}</p>
+                                                <p class="price fz-16" >Rp{{number_format($product->selling_price,0,',','.')}}</p>
                                                 </div>
                                                 <div class="col ps-0">
                                                 <div class="d-flex justify-content-end">
@@ -134,7 +134,7 @@
                                             </div>
                                             <div class="row d-flex justify-content-center align-items-center py-1">
                                                 <div class="col-8 d-flex justify-content-start">
-                                                <p class="price fz-16" >Rp{{number_format($product->selling_price,0,',','.');}}</p>
+                                                <p class="price fz-16" >Rp{{number_format($product->selling_price,0,',','.')}}</p>
                                                 </div>
                                                 <div class="col ps-0">
                                                 <div class="d-flex justify-content-end">

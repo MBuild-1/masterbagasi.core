@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\NewAuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,16 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-Auth::routes();
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::controller(NewAuthController::class)->prefix('auth')->name('auth.')->group(function () {
+    Route::post('login', 'login')->name('login');
+    Route::post('logout', 'logout')->name('logout');
+});
+
+// Auth::routes();
 
 Route::get('/password/reset', function () {
     return view('auth.passwords.email');
