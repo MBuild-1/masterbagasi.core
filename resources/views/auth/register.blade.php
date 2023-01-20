@@ -1,5 +1,5 @@
 @extends('layouts.login.app')
-
+@section('title', 'Register MB')
 @section('content')
 
 
@@ -204,7 +204,7 @@
                             <svg class="dash" viewBox="-10 0 50 1"><line x1="-9" x2="39"></line></svg>
                         </div>
 
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('auth.register') }}">
                             @csrf
                             <div class="form-floating form-white my-3">
                                 <input type="name" id="name" name="name"
@@ -223,6 +223,11 @@
                                     value="{{ old('email') }}"
                                     placeholder="Email" />
                                     <label class="text-black-50" for="email">Email</label>
+                                    @if($validation)
+                                        <span class="text-danger">
+                                            {{ implode('* ', $validation->email) }}
+                                        </span>
+                                    @endif
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -235,6 +240,14 @@
                                     required autocomplete="new-password" placeholder="Password"/>
                                 <span toggle="#password-popRegister" class="eyeshow field-icon toggle-password"></span>
                                     <label class="text-black-50" for="password">Password</label>
+                                    @if($validation)
+                                        @foreach ($validation->password as $item)
+                                            <span class="text-danger">
+                                                    {{ $loop->iteration }}. {{ $item }}
+                                            </span>
+                                            <br>
+                                        @endforeach
+                                    @endif
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

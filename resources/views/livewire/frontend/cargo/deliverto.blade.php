@@ -22,12 +22,12 @@
                 <div class="col">
                     <select class="form-select" aria-label="Default select example" wire:model='country'>
                         <option selected value={{ null }} >Pilih Negara Tujuan</option>
-                        @foreach ($countries as $country)
-                             <option value="{{$country->id}}">{{$country->name}}</option>
+                        @foreach ($countries as $item)
+                             <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
                       </select>
                       <div class="d-flex justify-content-end mt-2">
-                        <button class="btn btn-primary btn-sm" wire:click.prevent='cekNegara'>Tambah Alamat</button>
+                        <button class="btn btn-primary btn-sm" wire:click.prevent='cekNegara'>Tambah Daftar Alamat</button>
                     </div>
                 </div>
             </div>
@@ -38,3 +38,4 @@
     </div>
     </div>
 </div>
+{{-- @dd($countries) --}}

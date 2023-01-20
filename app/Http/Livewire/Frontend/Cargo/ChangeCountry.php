@@ -10,6 +10,7 @@ use Livewire\Component;
 class ChangeCountry extends Component
 {
     protected $listeners = ['deliverto' => 'render'];
+    public $user;
 
     public function render()
     {

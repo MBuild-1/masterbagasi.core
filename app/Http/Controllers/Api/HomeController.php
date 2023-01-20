@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HastagResource;
+use App\Models\Address;
 use App\Models\Brands;
 use App\Models\Cargo;
 use App\Models\Category;

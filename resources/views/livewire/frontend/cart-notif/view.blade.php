@@ -6,7 +6,7 @@
         <div class="mycart-icon-tompel ic-size" alt=""></div>
         @endif
     </a>
-    @if(Auth::check())
+    @empty(!$user)
     @if ($this->countCart == 0)
     <ul class="dropdown-menu dropdown-menu-lg-end keranjang_ul" aria-labelledby="navbarDropdown">
         <div class="no-cart p-5">
@@ -115,7 +115,6 @@
                             </div>
                         </a>
                         @endif
-
                     </div>
                     @endif
                     @endforeach
@@ -124,9 +123,5 @@
         </li>
     </ul>
     @endif
-
-    @else
-
-    @endif
-
+    @endempty
 </li>

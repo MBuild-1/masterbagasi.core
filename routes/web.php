@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\NewAuthController;
+use App\Http\Controllers\API\NewCountryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,14 +17,24 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-
+// New Auth::routes();
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::get('/register', function () {
+    return view('auth.register', ['validation' => []]);
+})->name('register');
+
 Route::controller(NewAuthController::class)->prefix('auth')->name('auth.')->group(function () {
     Route::post('login', 'login')->name('login');
     Route::post('logout', 'logout')->name('logout');
+    Route::post('register', 'register')->name('register');
+});
+
+// New Country Controller
+Route::controller(NewCountryController::class)->prefix('country')->name('country.')->group(function () {
+    Route::post('/', 'handleSelect')->name('handle-select');
 });
 
 // Auth::routes();

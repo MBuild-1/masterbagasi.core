@@ -66,22 +66,51 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $token = $request->cookie('token-auth');
+        $countryName = $request->cookie('country-name');
+
+        if ($countryName != null) {
+            $country = $countryName;
+        } else {
+            $country = "";
+        }
+        
 
         if ($token != null) {
-            $response = Http::withHeaders([
+            $response1 = Http::withHeaders([
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $token,
             ])->get(API::URL()['profile']);
 
-            $res = json_decode($response->body());
-
+            $res1 = json_decode($response1->body());
+            
             $user = [
-                'name' => $res->data->name,
-                'avatar' => $res->data->user_profile->avatar,
+                'name' => $res1->data->name,
+                'avatar' => $res1->data->user_profile->avatar,
             ];
+            
+            
         } else {
             $user = [];
         }
+        
+        if ($token != null) {
+            $response2 = Http::withHeaders([
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $token,
+            ])->get(API::URL()['countries']);
+            
+            $res2 = json_decode($response2->body());
+    
+    
+            $countries = $res2->data;
+            // dd($countries);
+            
+        } else {
+            $countries = [];
+            // return redirect('/login')->with('message', 'Login Dulu!');
+        }
+
+        
 
         //NON API BASE
         $products = Product::all();
@@ -99,12 +128,12 @@ class HomeController extends Controller
         $kerajinan = Hastag::where('id', '9')->first();
         $dapur = Hastag::where('id', '8')->first();
         $banners = Banner::all();
-        $countries = Country::orderBy("name", "asc")->get();
+        // $countries = Country::orderBy("name", "asc")->get();
         $maps = Province::all();
         $news = News::all();
         $bundling = ProductHastags::where('hastags_id', '11')->get();
         // dd($bundling);
-        return view('home', compact('user', 'bundling', 'products', 'categories', 'brands', 'hastags', 'banners', 'masakanibu', 'countries', 'maps', 'viral', 'kehangatan', 'rekomendasi', 'kerajinan', 'dapur', 'viral_hastag', 'masakanibu_hastag', 'kehangatan_hastag', 'rekomendasi_hastag', 'news'));
+        return view('home', compact('user', 'bundling', 'products', 'categories', 'brands', 'hastags', 'banners', 'masakanibu', 'countries', 'maps', 'viral', 'kehangatan', 'rekomendasi', 'kerajinan', 'dapur', 'viral_hastag', 'masakanibu_hastag', 'kehangatan_hastag', 'rekomendasi_hastag', 'news', 'country'));
     }
 
 

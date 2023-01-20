@@ -59,4 +59,35 @@ class NewAuthController extends Controller
             return redirect("/")->with('message', 'gagal logout');
         }
     }
+
+    public function register(Request $request)
+    {
+        try {
+            $response = Http::withHeaders([
+                'Accept' => 'application/json',
+            ])->post(API::URL()['register'], [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $request->password,
+                    'password_confirmation' => $request->password_confirmation,
+                ]);
+
+                $res = json_decode($response->body());
+
+                if ($res->meta->code == 401) {
+                    $validation = $res->data;
+                    // dd($validation);
+                    return view('auth.register', ['validation' => $validation]);
+                } else {
+                    $minutes = 60;
+
+                    Cookie::queue('token-auth', $res->data->access_token, $minutes);
+
+                    return redirect('/');
+                }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

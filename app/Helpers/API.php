@@ -9,6 +9,7 @@ class API {
             'register' => env('API_URL'). '/auth/register',
             'logout' => env('API_URL'). '/auth/logout',
             'profile' => env('API_URL'). '/user/profile',
+            'countries' => env('API_URL'). '/country',
         ];
         return $list;
     }

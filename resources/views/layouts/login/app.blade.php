@@ -18,7 +18,7 @@
     {{-- <link rel="stylesheet" href="{{asset('frontend/css/mdb.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('frontend/css/login.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/hebron.css')}}">
-    <title>Login MB</title>
+    <title>@yield('title')</title>
     <style>
         body {
             font-family: Roboto

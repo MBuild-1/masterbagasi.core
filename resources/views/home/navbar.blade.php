@@ -13,12 +13,68 @@
                     <img src="{{ asset('frontend/img/ico/default/location-off.svg') }}"
                         style="padding-top: 12px;" alt="">
                 </div>
-               {{-- Livewire Change Country --}}
-              <livewire:frontend.cargo.change-country>
+               {{-- <livewire:frontend.cargo.change-country> --}}
+               <div id="deliver-hover" style="min-width: 96px;">
+                <p style="font-size:11px; margin-bottom:0; line-height: 1.4">Dikirim ke
+                    @empty(!$user)
+                        @if ($user)
+                        <span style="font-weight:bold; font-size:16px;" class="d-block">{{$country?? 'Pilih Negara'}}</span></p>
+                        @else
+                        <span style="font-weight:bold; font-size:16px;" class="d-block">Pilih Negara</span></p>
+                        @endif
+                    @else
+                    <span style="font-weight: bold;font-size: 16.5px;" class="d-block"><a href="/login" style="text-decoration: none;color:black">Pilih Negara</a></span></p>
+                    @endempty
+                    
             </div>
-             <livewire:frontend.cargo.deliverto>
+            </div>
+             {{-- <livewire:frontend.cargo.deliverto> --}}
+                {{-- @dd($countries) --}}
+                <div wire:ignore.self class="modal fade" id="deliverto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #25258C">
+                                    <h3 class="mb-0 text-white">Daftar Alamat Pengiriman</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style=" background-color:#fff;color:#fff"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row d-flex flex-row justify-content-center align-items-center mx-4 my-4">
+                                            <div class="col">
+                                                <div class="popup-bagas"></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="popup-mastah"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form action=" {{route('country.handle-select')}} " method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" aria-label="Default select example" name='country'>
+                                                    <option disabled >Pilih Negara Tujuan</option>
+                                                    @foreach ($countries as $item)
+                                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="d-flex justify-content-end mt-2">
+                                                    <button class="btn btn-primary btn-sm">Tambah Daftar Alamat</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm">Selesai</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                
             {{-- Search --}}
-            <form class="d-flex my-0 ms-2" style="width: 60%;" action="{{ url('/search') }}"
+            <form class="d-flex my-0 ms-2" style="width: 62%;" action="{{ url('/search') }}"
                 method="GET">
                 <input class="form-control me-2" type="search" placeholder="Cari barang disini" aria-label="Search"
                     value="{{ Request::get('search') }}" name="search" autocomplete="off">
@@ -30,8 +86,8 @@
                         aria-expanded="false">
                         <div class="inbox-icon ic-size responsive"></div>
                     </a>
-                    @if (Auth::check())
-                        
+
+                    @empty(!$user)
                     <ul class="dropdown-menu dropdown-menu-lg-end chat_ul" aria-labelledby="navbarDropdown">
                         <li class="chat_li">
                             <a href="/profile/chat">
@@ -93,12 +149,10 @@
                                 </div>
                             </a>
                         </li>
-
                     </ul>
-                    @else
-                        
-                    @endif
+                    @endempty
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -106,7 +160,7 @@
                     </a>
                     {{-- nav-tabs => nav-link --}}
                     
-                  @if (Auth::check())
+                  @empty(!$user)
                   <div class="dropdown-menu dropdown-menu-lg-end nav-tabs my-0" style="
                     border-top-left-radius: 0;
                     border-top-right-radius: 0;
@@ -188,13 +242,10 @@
                             </div>
                         </div>
                     </div>
-                  @else
-                  @endif
-                    
+                  @endempty
                 </li>
                 {{-- CART DROPDOWN LIVEWIRE --}}
-                <livewire:frontend.cart-notif.view/>
-                
+                <livewire:frontend.cart-notif.view :user="$user">
             </ul>
 
 
@@ -212,7 +263,7 @@
                 @else
                     <a href="">
                     <ul class="nav nav-tabs" >
-                                <li class="nav-item ms-2">
+                                <li class="nav-item">
                                     <a href="{{ route('profile-edit') }}">
                                     <img src="{{ $user['avatar'] ? $user['avatar'] : 'https://ui-avatars.com/api/?name='.Str::slug($user['name']).'&background=0D8ABC&color=fff'  }}" alt="" class="img-fluid" width="40px">
                                 </li>
@@ -220,7 +271,7 @@
                                     <a class="nav-link dropdown-toggle px" style="color: black;" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <Span style="font-weight:bold; font-size:16.5px;" id="akun-span">
-                                            {{ $user['name'] }}</Span>
+                                            {{ Str::length($user['name']) >= 8 ? Str::substr($user['name'], 0, 8). '...' : $user['name'] }}</Span>
                                     </a>
                                     <ul class="dropdown-menu profile-dd">
                                         <div class="profile-dd-con">

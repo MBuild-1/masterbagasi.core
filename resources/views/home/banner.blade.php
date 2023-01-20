@@ -1,7 +1,7 @@
 <!-- Carousel -->
 <div class="row pt-4" >
     <div class="col-sm-12 ">
-        <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+        <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
                 @foreach ($banners as $key => $item)
                 <div class="carousel-item {{$key == '0' ? 'active':'' }}">

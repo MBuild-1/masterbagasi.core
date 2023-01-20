@@ -1,5 +1,5 @@
 @extends('layouts.login.app')
-
+@section('title', 'Login MB')
 @section('content')
 
 <section class="register-page">
@@ -39,7 +39,9 @@
 
                         <form method="POST" action="{{ route('auth.login') }}">
                             @if (session('message'))
-                                {{ session('message') }}
+                                <span class="text-danger">
+                                    <strong>{{ session('message') }}</strong>
+                                </span>
                             @endif
                             @csrf
                             <div class="form-floating form-white my-3">

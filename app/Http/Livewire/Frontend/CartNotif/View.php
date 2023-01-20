@@ -11,6 +11,7 @@ class View extends Component
 {
 
     public $countCart;
+    public $user;
     protected $listeners = ['cartUpdated' => 'render'];
 
     public function render()
