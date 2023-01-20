@@ -564,9 +564,10 @@ ul.nav-tabs .dropdown-item:hover{
 #controls div{
     cursor: pointer;
 }
-#controls div:hover img{
-    content: url('../img/ico/videobtn/btn-play-hover.svg');
-}
+
+/* #controls div:hover img{
+    content: url('../img/ico/videobtn/btn-pause-hover.svg');
+} */
 
   #cektarif .modal-body .ps-3 .d-flex button{
     min-width: 270px;

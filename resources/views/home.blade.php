@@ -114,7 +114,7 @@
                       </div>
                       <div class="row d-flex justify-content-center align-items-center py-1">
                         <div class="col-8 d-flex justify-content-start pe-0">
-                          <p class="price" >Rp{{number_format($product->product->selling_price,0,',','.');}}</p>
+                          <p class="price" >Rp{{number_format($product->product->selling_price,0,',','.')}}</p>
                         </div>
                         <div class="col ps-0">
                           <div class="d-flex justify-content-end">
@@ -283,7 +283,7 @@
           <div class="bks-caption" style="position: relative">
             <div id="bundle-caption" style="position: absolute;left: 69px;top: 30px;width: 276px;z-index: 10;">
               <h2 style="font-size: 45px; font-weight: 600; color: #00428C; text-align: left;" class="animateanimated animatefadeInLeft "> <span id="bundle-event"></span>{{$bundle->product->name}}</h2>
-              <h2 class="bundle-price" style="font-size: 45px; font-weight: 600; background-color: #00428C; color: white; text-align: left; padding: 5px 10px;"><span><strong class="h2">Rp{{number_format($bundle->product->selling_price,0,',','.');}}</strong><span id="bundle-price"></span></h2>
+              <h2 class="bundle-price" style="font-size: 45px; font-weight: 600; background-color: #00428C; color: white; text-align: left; padding: 5px 10px;"><span><strong class="h2">Rp{{number_format($bundle->product->selling_price,0,',','.')}}</strong><span id="bundle-price"></span></h2>
               <div class="d-flex justify-content-start mt-3" style="font-size: 16px">
                 <p class="fw-bold my-auto"><i class="fa fa-star text-warning"></i> 4.5</p>
                 <p class="px-1 my-auto">|</p>
@@ -394,7 +394,7 @@
                           </div>
                           <div class="row d-flex justify-content-center align-items-center py-1">
                             <div class="col-8 d-flex justify-content-start">
-                              <p class="price" >Rp{{number_format($product->product->selling_price,0,',','.');}}</p>
+                              <p class="price" >Rp{{number_format($product->product->selling_price,0,',','.')}}</p>
                             </div>
                             <div class="col ps-0">
                               <div class="d-flex justify-content-end">
@@ -496,7 +496,7 @@
                           </div>
                           <div class="row d-flex justify-content-center align-items-center py-1">
                             <div class="col-8 d-flex justify-content-start">
-                              <p class="price" >Rp{{number_format($product->product->selling_price,0,',','.');}}</p>
+                              <p class="price" >Rp{{number_format($product->product->selling_price,0,',','.')}}</p>
                             </div>
                             <div class="col ps-0">
                               <div class="d-flex justify-content-end">

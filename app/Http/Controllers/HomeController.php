@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\API;
 use App\Models\Banner;
 use App\Models\Brands;
 use App\Models\Cargo;
@@ -18,6 +19,7 @@ use App\Models\Wishlists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpFoundation\Cookie;
 
 
 
@@ -63,6 +65,23 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        $token = $request->cookie('token-auth');
+
+        if ($token != null) {
+            $response = Http::withHeaders([
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $token,
+            ])->get(API::URL()['profile']);
+
+            $res = json_decode($response->body());
+
+            $user = [
+                'name' => $res->data->name,
+                'avatar' => $res->data->user_profile->avatar,
+            ];
+        } else {
+            $user = [];
+        }
 
         //NON API BASE
         $products = Product::all();
@@ -85,7 +104,7 @@ class HomeController extends Controller
         $news = News::all();
         $bundling = ProductHastags::where('hastags_id', '11')->get();
         // dd($bundling);
-        return view('home', compact('bundling', 'products', 'categories', 'brands', 'hastags', 'banners', 'masakanibu', 'countries', 'maps', 'viral', 'kehangatan', 'rekomendasi', 'kerajinan', 'dapur', 'viral_hastag', 'masakanibu_hastag', 'kehangatan_hastag', 'rekomendasi_hastag', 'news'));
+        return view('home', compact('user', 'bundling', 'products', 'categories', 'brands', 'hastags', 'banners', 'masakanibu', 'countries', 'maps', 'viral', 'kehangatan', 'rekomendasi', 'kerajinan', 'dapur', 'viral_hastag', 'masakanibu_hastag', 'kehangatan_hastag', 'rekomendasi_hastag', 'news'));
     }
 
 

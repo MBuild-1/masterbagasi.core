@@ -67,12 +67,12 @@
                                         <p class="card-title product-name">{{ $product->product->name }}</p>
                                         <p class="dlv-to text-muted">Dikirim ke United Kingdom</p>
                                         <p class="price">Rp.
-                                            {{ number_format($product->product->original_price,2,',','.'); }},-
+                                            {{ number_format($product->product->original_price,2,',','.') }},-
                                         </p>
                                         <div class="d-flex align-items-center discount">
                                             <div class="discount-percentage">50%</div>
                                             <div class="discount-price text-muted">Rp.
-                                                {{ number_format($product->product->selling_price,2,',','.'); }},-
+                                                {{ number_format($product->product->selling_price,2,',','.') }},-
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center conclusion-product">

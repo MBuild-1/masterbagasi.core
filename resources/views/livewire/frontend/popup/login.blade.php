@@ -18,7 +18,7 @@
                                 <p class="mb-3">Masuk ke Masterbagasi atau <a href="register"
                                         class=" fw-bold" style="color:#FF4200">Daftar</a>
                                 </p>
-                                <form method="POST" class="my-4" action="{{ route('login') }}">
+                                <form method="POST" class="my-4" action="{{ route('auth.login') }}">
                                     @csrf
                                     <div class="form-floating mb-3">
                                         <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"

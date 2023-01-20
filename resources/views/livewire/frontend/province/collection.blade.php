@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="row d-flex justify-content-center align-items-center hg-30">
                                         <div class="col-7 d-flex justify-content-start pe-0">
-                                            <p class="price fz-16 mb-0" >Rp{{number_format($product->selling_price,0,',','.');}}</p>
+                                            <p class="price fz-16 mb-0" >Rp{{number_format($product->selling_price,0,',','.')}}</p>
                                         </div>
                                         <div class="col">
                                             <div class="d-flex justify-content-between">

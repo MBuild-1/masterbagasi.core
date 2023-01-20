@@ -1,7 +1,7 @@
 <!-- Carousel -->
 <div class="row pt-4" >
     <div class="col-sm-12 ">
-        <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
             <div class="carousel-inner">
                 @foreach ($banners as $key => $item)
                 <div class="carousel-item {{$key == '0' ? 'active':'' }}">
@@ -11,8 +11,11 @@
                 </div>
                 @endforeach
                 <div id="controls">
-                    <div onclick="playPause()">
-                        <img id="videojs-btn" src="{{asset('frontend/img/ico/videobtn/btn-play.svg')}}" alt="">
+                    <div id="startSlide" class="d-none">
+                        <img src="{{asset('frontend/img/ico/videobtn/btn-play.svg')}}" alt="">
+                    </div>
+                    <div id="pauseSlide">
+                        <img src="{{asset('frontend/img/ico/videobtn/btn-pause.svg')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -26,20 +29,26 @@
             </button>
         </div>
     </div>
-    {{-- <div class="col-sm-5">
-        <div class="video-atas">
-            <div id="player-container">
-                <video id="my-video"
-                    style="width:100%; height:100%;">
-                    <source src="{{asset('frontend/vid/web.mp4')}}" type="video/mp4" />
-                </video>
-                <div id="controls">
-                    <div onclick="playPause()">
-                        <img id="videojs-btn" src="{{asset('frontend/img/ico/videobtn/pause-default.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </div>
 <!-- Carousel -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var startSlide = document.getElementById("startSlide");
+        var pauseSlide = document.getElementById("pauseSlide");
+        var element = document.getElementById("carouselBanner");
+
+        var myCarousel = new bootstrap.Carousel(element);
+
+        startSlide.addEventListener("click", function() {
+            pauseSlide.classList.remove('d-none')
+            startSlide.classList.add('d-none')
+            myCarousel.cycle();
+        });
+
+        pauseSlide.addEventListener("click", function () {
+            startSlide.classList.remove('d-none')
+            pauseSlide.classList.add('d-none')
+            myCarousel.pause();
+        });
+    });
+</script>
